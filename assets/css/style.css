@@ -38,7 +38,7 @@ body a {
 }
 
 body h1 {
-    font-size: 47px;
+    font-size: 50px;
 }
 
 body h2 {
@@ -219,7 +219,7 @@ header button.menu-lenguage {
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    padding: 40px 60px;
+    padding: 40px 0px;
     color: white;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
     z-index: 1;
@@ -240,6 +240,7 @@ header button.menu-lenguage {
 .perfil * {
     position: relative;
     z-index: 1;
+    margin-left: 250px;
 }
 
 .textoPerfil {
@@ -250,7 +251,6 @@ header button.menu-lenguage {
 }
 
 .textoPerfil h1 {
-    font-size: 40px;
     font-weight: 700;
     margin: 0;
     line-height: 1.2;
@@ -720,6 +720,15 @@ footer {
     color: #f1f1f1;
     text-align: left;
     margin-bottom: 40px;
+}
+
+textarea {
+    resize: none;
+    /* Desativa o redimensionamento */
+    width: 100%;
+    /* Ajuste a largura desejada */
+    height: 120px;
+    /* Altura fixa, você pode ajustar */
 }
 
 .contatos h4 {
