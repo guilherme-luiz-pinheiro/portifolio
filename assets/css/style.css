@@ -265,6 +265,7 @@ header button.menu-lenguage {
     flex-direction: column;
     gap: 12px;
     max-width: 600px;
+    text-align: center;
 }
 
 .textoPerfil h1 {
