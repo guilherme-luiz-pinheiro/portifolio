@@ -106,6 +106,13 @@ header {
     background: linear-gradient(21.6deg, rgba(0, 0, 0, 0.3) 70%, rgba(13, 25, 128, 0.3) 90%), #1f1f1f;
     display: flex;
     justify-content: center;
+    transition: top 0.3s ease;
+
+}
+
+#header.hide {
+    top: -100px;
+    /* ou ajuste conforme a altura do seu header */
 }
 
 nav {
@@ -176,6 +183,9 @@ header button.menu-lenguage {
 .voltar {
     margin-bottom: 10px;
     align-self: flex-end;
+    background-color: #0e0e0f;
+    width: 10px;
+    height: 30px;
 }
 
 .fixado button {

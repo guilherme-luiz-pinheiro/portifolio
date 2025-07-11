@@ -65,38 +65,53 @@ window.addEventListener('resize', () => {
 });
 
 function checkFade() {
-  const divs = document.querySelectorAll('div');
+    const divs = document.querySelectorAll('div');
 
-  divs.forEach(div => {
-    const rect = div.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
+    divs.forEach(div => {
+        const rect = div.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
 
-    // Calcula o quanto da div está visível (entre 0 e 1)
-    const visibleTop = Math.max(0, rect.top);
-    const visibleBottom = Math.min(windowHeight, rect.bottom);
-    const visibleHeight = visibleBottom - visibleTop;
-    const totalHeight = rect.height;
+        // Calcula o quanto da div está visível (entre 0 e 1)
+        const visibleTop = Math.max(0, rect.top);
+        const visibleBottom = Math.min(windowHeight, rect.bottom);
+        const visibleHeight = visibleBottom - visibleTop;
+        const totalHeight = rect.height;
 
-    let visibilityRatio = visibleHeight / totalHeight;
+        let visibilityRatio = visibleHeight / totalHeight;
 
-    // Se estiver totalmente fora da tela, visibilidade é 0
-    if (rect.bottom <= 0 || rect.top >= windowHeight) {
-      visibilityRatio = 0;
-    }
+        // Se estiver totalmente fora da tela, visibilidade é 0
+        if (rect.bottom <= 0 || rect.top >= windowHeight) {
+            visibilityRatio = 0;
+        }
 
-    // Garante que fique entre 0 e 1
-    visibilityRatio = Math.max(0, Math.min(1, visibilityRatio));
+        // Garante que fique entre 0 e 1
+        visibilityRatio = Math.max(0, Math.min(1, visibilityRatio));
 
-    // Aplica a opacidade baseada na visibilidade
-    div.style.opacity = visibilityRatio;
-  });
+        // Aplica a opacidade baseada na visibilidade
+        div.style.opacity = visibilityRatio;
+    });
 }
 
 window.addEventListener('scroll', checkFade);
 window.addEventListener('load', checkFade);
 window.addEventListener('resize', checkFade);
 
+let lastScrollTop = 0;
+const header = document.getElementById('header');
 
+window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+
+    if (currentScroll > lastScrollTop) {
+        // Rolando para baixo
+        header.classList.add('hide');
+    } else {
+        // Rolando para cima
+        header.classList.remove('hide');
+    }
+
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Evita valores negativos
+});
 
 // Inicializa
 updateCarousel();
