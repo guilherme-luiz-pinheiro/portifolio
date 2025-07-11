@@ -131,16 +131,23 @@ document.getElementById('btn-voltar').addEventListener('click', () => {
 });
 const btnVoltar = document.getElementById('btn-voltar');
 
-
 window.addEventListener('scroll', () => {
     if (window.scrollY === 0) {
-        // Está no topo da página, esconde o botão
-        btnVoltar.style.display = 'none';
+        // Oculta suavemente ao voltar ao topo
+        btnVoltar.classList.remove('show');
     } else {
-        // Rolou para baixo, mostra o botão
-        btnVoltar.style.display = 'flex'; // ou 'block', conforme seu CSS
+        // Mostra suavemente ao rolar para baixo
+        btnVoltar.classList.add('show');
     }
 });
+
+btnVoltar.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
 
 // Inicializa
 updateCarousel();

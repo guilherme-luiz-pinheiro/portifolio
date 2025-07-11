@@ -1,0 +1,48 @@
+<style>
+    .softskill {
+        font-size: 18px;
+        font-weight: bold;
+        background: linear-gradient(21.6deg, rgba(0, 0, 0, 0.3) 17.94%, rgba(13, 25, 128, 0.3) 89.6%), #1f1f1f;
+        color: #fff;
+        padding: 16px 24px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        min-width: 220px;
+        cursor: pointer;
+        transition: transform 0.3s ease, max-height 0.3s ease;
+        overflow: hidden;
+        max-height: 40px;
+        /* altura inicial */
+    }
+
+    .extra-text {
+        display: block;
+        font-weight: normal;
+        font-size: 16px;
+        margin-top: 8px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    /* Quando o mouse passa no container, aumenta o <p> */
+    .container:hover .softskill {
+        transform: scale(1.05);
+        max-height: 200px;
+        /* expande para caber o texto extra */
+    }
+
+    /* Mostra o texto escondido */
+    .container:hover .softskill .extra-text {
+        opacity: 1;
+    }
+</style>
+
+<div class="container">
+    <p class="softskill">
+        Comunicação<br>
+        <span class="extra-text">Capacidade de expressar ideias de forma clara e eficaz, tanto verbalmente quanto por
+            escrito.</span>
+    </p>
+    <div class="popup">Detalhes adicionais aqui.</div>
+</div>
