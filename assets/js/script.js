@@ -113,5 +113,34 @@ window.addEventListener('scroll', () => {
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Evita valores negativos
 });
 
+document.getElementById('btn-github').addEventListener('click', () => {
+    window.open('https://github.com/guilherme-luiz-pinheiro', '_blank');
+});
+
+document.getElementById('btn-linkedin').addEventListener('click', () => {
+    window.open('https://www.linkedin.com/in/guilherme-luiz-pinheiro/', '_blank');
+});
+document.getElementById('btn-whatsapp').addEventListener('click', () => {
+    window.open('https://wa.me/551197997315574', '_blank');
+});
+document.getElementById('btn-voltar').addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // rolagem suave
+    });
+});
+const btnVoltar = document.getElementById('btn-voltar');
+
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY === 0) {
+        // Está no topo da página, esconde o botão
+        btnVoltar.style.display = 'none';
+    } else {
+        // Rolou para baixo, mostra o botão
+        btnVoltar.style.display = 'flex'; // ou 'block', conforme seu CSS
+    }
+});
+
 // Inicializa
 updateCarousel();
