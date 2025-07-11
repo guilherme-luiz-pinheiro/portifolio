@@ -1,0 +1,782 @@
+/* ------------------ VARIÁVEIS DE CORES ------------------ */
+:root {
+    --azul-escuro: #242424;
+    --azul-claro: #242424;
+    --azul-hover: #4c64d6;
+    --cinza-claro: #f2f2f2;
+    --roxo-botao: #8a2be2;
+    --roxo-hover: #6a1fc2;
+    --texto-primario: #242424;
+    --texto-secundario: #555;
+}
+
+/* ------------------ RESET GERAL ------------------ */
+* {
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    color: #242424;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body h1,
+body h2,
+body h3,
+body h4 {
+    margin: 0;
+}
+
+/* ------------------ TIPOGRAFIA ------------------ */
+body p,
+body a {
+    font-size: 15px;
+}
+
+body h1 {
+    font-size: 47px;
+}
+
+body h2 {
+    font-size: 40px;
+
+}
+
+body h3 {
+    font-size: 26px;
+    font-weight: normal;
+
+}
+
+body h4 {
+    font-size: 21px;
+    font-weight: normal;
+}
+
+
+
+/* ------------------ EFEITOS GLOBAIS ------------------ */
+body button:hover {
+    transform: scale(1.1);
+    transition: 0.3s ease;
+}
+
+body button {
+    align-self: flex-start;
+    background: #ffffff;
+    color: #242424;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 10px 0;
+}
+
+body:hover i {
+    transform: scale(1.2);
+    transition: 0.3s ease;
+}
+
+div {
+    opacity: 1;
+    transition: opacity 0.6s ease;
+}
+
+div.hidden {
+    opacity: 0;
+}
+
+
+/* ------------------ HEADER E NAVEGAÇÃO ------------------ */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 45px;
+    background: linear-gradient(21.6deg, rgba(0, 0, 0, 0.3) 70%, rgba(13, 25, 128, 0.3) 90%), #1f1f1f;
+    display: flex;
+    justify-content: center;
+}
+
+
+nav {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+nav ul.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    /* horizontal */
+    align-items: center;
+}
+
+nav ul.menu li {
+    margin: 0;
+}
+
+.menu-texto {
+    padding: 0 10px 0 20px;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+header button.menu-button,
+header button.menu-lenguage {
+    background: none;
+    border: none;
+    color: white;
+    font: inherit;
+    cursor: pointer;
+    padding: 0 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    transition: background-color 0.3s ease;
+    margin: 0 0;
+}
+
+.menu-lenguage img {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+}
+
+/* ------------------ BOTÕES FIXADOS ------------------ */
+.fixado {
+    position: fixed;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    bottom: 20px;
+    right: 20px;
+}
+
+.redes-sociais {
+    display: flex;
+    gap: 25px;
+    flex-direction: row;
+}
+
+.voltar {
+    margin-bottom: 10px;
+    align-self: flex-end;
+}
+
+.fixado button {
+    margin: 0 0;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0;
+}
+
+.fixado button:hover {
+    color: #c5c5c5;
+    transform: scale(1.3);
+    transition: 0.3s ease;
+}
+
+/* ------------------ PERFIL ------------------ */
+.perfil {
+    position: relative;
+    height: 500px;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 38.94%), url(../img/perfil.png) no-repeat center top;
+    background-size: cover;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 40px 60px;
+    color: white;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    gap: 8px;
+}
+
+.perfil::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+.perfil * {
+    position: relative;
+    z-index: 1;
+}
+
+.textoPerfil {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 600px;
+}
+
+.textoPerfil h1 {
+    font-size: 40px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.textoPerfil h4 {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+    color: #f0f0f0;
+}
+
+.textoPerfil p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #e0e0e0;
+    margin: 0;
+}
+
+/* ------------------ SOBRE ------------------ */
+.sobre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background-color: #f9f9f9;
+    padding: 60px 20px;
+    gap: 40px;
+}
+
+.tituloSobre {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1f1f1f;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.centerRows {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.textoSobre {
+    max-width: 620px;
+    text-align: left;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    padding: 10px;
+}
+
+.softskill {
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(21.6deg, rgba(0, 0, 0, 0.3) 17.94%, rgba(13, 25, 128, 0.3) 89.6%), #1f1f1f;
+    color: #fff;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 220px;
+}
+
+/* ------------------ FERRAMENTAS ------------------ */
+.ferramentas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #1f1f1f 0%, #2b2b2b 100%);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ferramentas h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.ferramenta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.ferramenta div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    transition: transform 0.3s ease;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.ferramenta div:hover {
+    transform: scale(1.1);
+}
+
+/* Ícones */
+.ferramenta i,
+.ferramenta img {
+    font-size: 56px;
+    height: 60px;
+    transition: transform 0.3s ease;
+    margin-bottom: 12px;
+}
+
+/* Legenda */
+.ferramenta span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #ddd;
+}
+
+/* Cores específicas por tecnologia */
+.react i {
+    color: #61DBFB;
+}
+
+.javascript i {
+    color: #F7DF1E;
+}
+
+.css i {
+    color: #2965F1;
+}
+
+.html i {
+    color: #E44D26;
+}
+
+.java i {
+    color: #f2f2f2;
+}
+
+.python i {
+    color: #FFE873;
+}
+
+.sql i {
+    color: #B8BACE;
+}
+
+
+/* ------------------ SERVIÇOS ------------------ */
+.servicos {
+    padding: 80px 30px;
+    position: relative;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%),
+        url(../img/servico.png) no-repeat center top;
+    background-size: cover;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+    color: white;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+    overflow-x: hidden;
+    z-index: 0;
+    text-align: center;
+}
+
+.servicos::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: -1;
+}
+
+/* Título principal */
+.servicos h2 {
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 40px;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+/* Subtítulo */
+.servicos h3 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #f1f1f1;
+}
+
+/* Container dos serviços */
+.servico {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 36px;
+    text-align: left;
+    margin-top: 40px;
+}
+
+/* Cartão de serviço */
+.servico div {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 28px;
+    border-radius: 20px;
+    min-width: 280px;
+    width: 400px;
+    height: 320px;
+    gap: 14px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.85);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.servico div:hover {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+    transform: translateY(-6px) scale(1.02);
+}
+
+/* Título do cartão */
+.servico h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+/* Descrição do cartão */
+.servico p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #e6e6e6;
+    flex-grow: 1;
+}
+
+
+/* ------------------ PROJETOS / CARROSSEL ------------------ */
+.projetos {
+    padding: 60px 0;
+    text-align: center;
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.carousel-container {
+    overflow: hidden;
+    position: relative;
+    width: 1200px;
+    max-width: 100%;
+    margin: auto;
+    height: 460px;
+}
+
+.carousel {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: max-content;
+    transition: transform 0.3s ease;
+    overflow: visible;
+}
+
+.card:first-child {
+    margin-left: 0;
+}
+
+.card {
+    margin-left: -60px;
+    flex: 0 0 300px;
+    height: 360px;
+    background: linear-gradient(145deg, #0D1980, #1c2a9a);
+    color: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    opacity: 0.5;
+    transform: scale(0.85);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    position: relative;
+    transform-origin: center center;
+    overflow: hidden;
+}
+
+.card.card-portifolio {
+    background-image: url('../img/Wireframe\ portifolio.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+.card .card-content {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    backdrop-filter: blur(3px);
+}
+
+.card .img {
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.card.active {
+    opacity: 1;
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.card:hover {
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.5);
+}
+
+.card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    filter: brightness(0.9);
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+}
+
+.card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    overflow: hidden;
+}
+
+.card-content h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #ffffff;
+}
+
+.card-content p {
+    font-size: 1rem;
+    flex-grow: 1;
+    color: #d1d1d1;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.card-content button {
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+    color: #2a2a2a;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.card-content button:hover {
+    background-color: #17171b;
+    color: #fff;
+}
+
+/* Botões laterais */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #2a2a2a;
+    color: #fff;
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    user-select: none;
+    z-index: 20;
+}
+
+.nav-btn:hover {
+    background-color: #0e0e0f;
+    transform: scale(1.1);
+}
+
+.nav-btn.prev {
+    left: 20px;
+}
+
+.nav-btn.next {
+    right: 20px;
+}
+
+/* Dots indicadores */
+.dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 14px;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    background: #868686;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+}
+
+.dot:hover {
+    background-color: #2a2a2a;
+    transform: scale(1.1);
+}
+
+.dot.active {
+    background: #2a2a2a;
+    transform: scale(1.25);
+    box-shadow: 0 0 8px #2a2a2a;
+}
+
+/* ------------------ FOOTER ------------------ */
+footer {
+    background: linear-gradient(180deg, #1e1e1e 0%, #2a2a2a 100%);
+    width: 100%;
+    padding: 60px 20px 20px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+}
+
+.contatos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 100px;
+    color: #f1f1f1;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.contatos h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    color: #ffffff;
+}
+
+.contatos h3 {
+    font-size: 30px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.contatos p,
+.contatos a {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #d0d0d0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #66dbfb;
+}
+
+.leftRows {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.linha-horizontal {
+    width: 90%;
+    height: 1px;
+    background-color: #66dbfb;
+    opacity: 0.2;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .linha-horizontal {
+        margin-top: 20px;
+    }
+}
+
+.copyright {
+    text-align: center;
+    color: #aaa;
+    font-size: 14px;
+    margin-top: 24px;
+}
