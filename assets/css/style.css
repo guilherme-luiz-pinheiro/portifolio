@@ -21,7 +21,7 @@ body {
     height: 100%;
     margin: 0;
     color: #242424;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 body h1,
@@ -57,12 +57,12 @@ body h4 {
     font-weight: normal;
 }
 
-
-
 /* ------------------ EFEITOS GLOBAIS ------------------ */
 body button:hover {
     transform: scale(1.1);
     transition: 0.3s ease;
+    background-color: #17171b;
+    color: #fff;
 }
 
 body button {
@@ -76,6 +76,8 @@ body button {
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
     margin: 10px 0;
+    transition: all 0.3s ease;
+    font-weight: bold;
 }
 
 body:hover i {
@@ -105,7 +107,6 @@ header {
     display: flex;
     justify-content: center;
 }
-
 
 nav {
     display: flex;
@@ -193,6 +194,7 @@ header button.menu-lenguage {
     color: #c5c5c5;
     transform: scale(1.3);
     transition: 0.3s ease;
+    background-color: transparent;
 }
 
 /* ------------------ PERFIL ------------------ */
@@ -327,7 +329,6 @@ header button.menu-lenguage {
     color: white;
     padding: 80px 20px;
     text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .ferramentas h2 {
@@ -625,22 +626,6 @@ header button.menu-lenguage {
     margin-bottom: 16px;
 }
 
-.card-content button {
-    padding: 10px 16px;
-    font-size: 0.95rem;
-    background-color: #ffffff;
-    color: #2a2a2a;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
-}
-
-.card-content button:hover {
-    background-color: #17171b;
-    color: #fff;
-}
 
 /* Botões laterais */
 .nav-btn {
