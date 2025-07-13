@@ -121,7 +121,10 @@ document.getElementById('btn-linkedin').addEventListener('click', () => {
     window.open('https://www.linkedin.com/in/guilherme-luiz-pinheiro/', '_blank');
 });
 document.getElementById('btn-whatsapp').addEventListener('click', () => {
-    window.open('https://wa.me/5511977315574', '_blank');
+    const mensagem = encodeURIComponent('Olá Guilherme. Gostaria de mais informações!');
+    const numero = '11977315574';
+    const url = `https://wa.me/${numero}?text=${mensagem}`;
+    window.open(url, '_blank');
 });
 document.getElementById('btn-voltar').addEventListener('click', () => {
     window.scrollTo({
