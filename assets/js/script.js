@@ -121,7 +121,7 @@ document.getElementById('btn-linkedin').addEventListener('click', () => {
     window.open('https://www.linkedin.com/in/guilherme-luiz-pinheiro/', '_blank');
 });
 document.getElementById('btn-whatsapp').addEventListener('click', () => {
-    window.open('https://wa.me/551197997315574', '_blank');
+    window.open('https://wa.me/5511977315574', '_blank');
 });
 document.getElementById('btn-voltar').addEventListener('click', () => {
     window.scrollTo({
