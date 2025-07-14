@@ -2,7 +2,7 @@
 :root {
     --azul-escuro: #011140;
     --azul: #0442bf;
-    --azul-claro: #05f2f2;
+    --azul-claro: #05cef2;
     --cinza-claro: #f2f2f2;
     --roxo-botao: #8a2be2;
     --roxo-hover: #6a1fc2;
@@ -22,7 +22,7 @@ body {
     height: 100%;
     margin: 0;
     background-color: var(--azul-escuro);
-    font-family: 'inter', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 /* ------------------ TIPOGRAFIA ------------------ */
@@ -108,7 +108,7 @@ header {
     z-index: 1000;
     width: 100%;
     height: 45px;
-    background: linear-gradient(21.6deg, rgba(0, 0, 0, 0.3) 70%, rgba(13, 25, 128, 0.3) 90%), #1f1f1f;
+    background: var(--azul-escuro);
     display: flex;
     justify-content: center;
     transition: top 0.3s ease;
@@ -190,21 +190,25 @@ header button.menu-lenguage {
 /* Botão de voltar (seta) */
 #btn-voltar {
     position: fixed;
-    bottom: 100px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
+    bottom: 110px;
+    right: 40px;
+    width: 30px;
+    height: 45px;
     border: none;
-    border-radius: 12px;
+    border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
 
+    padding: 0;
+    margin: 0;
+
+    border-radius: 30px;
+
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.4s ease, transform 0.3s ease;
 }
 
 #btn-voltar.show {
@@ -217,7 +221,6 @@ header button.menu-lenguage {
     width: 50px;
     height: 50px;
     background-color: var(--azul);
-    color: white;
     border: none;
     border-radius: 50%;
     font-size: 22px;
@@ -237,6 +240,7 @@ header button.menu-lenguage {
 
 /* ------------------ PERFIL ------------------ */
 .perfil {
+    position: relative;
     width: 100%;
     background-size: cover;
     display: flex;
@@ -245,6 +249,40 @@ header button.menu-lenguage {
     align-items: center;
     padding: 40px 0px;
     z-index: 1;
+    overflow: visible;
+    /* garante que a parte fora continue visível */
+}
+
+.seta {
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    height: 80px;
+    bottom: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid var(--azul);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 30px;
+    animation: subirDescer 1.5s ease-in-out infinite;
+}
+
+/* Animação: sobe e desce */
+@keyframes subirDescer {
+    0% {
+        transform: translateX(-50%) translateY(50%);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(30%);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(50%);
+    }
 }
 
 .blue-fade {
@@ -399,7 +437,8 @@ header button.menu-lenguage {
 /* ------------------ FERRAMENTAS ------------------ */
 .ferramentas {
     max-width: 900px;
-    margin: 0 auto; /* Centraliza horizontalmente */
+    margin: 0 auto;
+    /* Centraliza horizontalmente */
     padding-bottom: 80px;
     display: flex;
     flex-direction: column;
@@ -407,7 +446,6 @@ header button.menu-lenguage {
     justify-content: center;
     text-align: center;
 }
-
 
 .ferramenta {
     display: flex;
@@ -419,14 +457,14 @@ header button.menu-lenguage {
 }
 
 .ferramenta div {
-
+    box-shadow: 0 6px 16px rgba(4, 66, 191, 0.2);
     border: 2px solid var(--azul);
     display: flex;
     align-items: center;
     /* Alinha verticalmente */
     justify-content: left;
     /* Alinha horizontalmente */
-    width: 150px;
+    width: 160px;
     /* Defina uma altura para ter espaço para alinhar */
     transition: transform 0.3s ease;
     gap: 20px;
@@ -439,10 +477,17 @@ header button.menu-lenguage {
 
 /* Ícones */
 .ferramenta i,
-.ferramenta img {
-    font-size: 36px;
+.ferramenta svg {
+    font-size: 39px;
     height: 40px;
+    color: var(--azul);
     transition: transform 0.3s ease;
+}
+
+.ferramenta svg {
+    margin-left: -8px;
+    /* Move o SVG 5px à esquerda */
+    margin-right: -10px;
 }
 
 /* Legenda */
@@ -452,46 +497,23 @@ header button.menu-lenguage {
 }
 
 /* Cores específicas por tecnologia */
-.react i {
-    color: #61DBFB;
-}
 
-.javascript i {
-    color: #F7DF1E;
-}
-
-.css i {
-    color: #2965F1;
-}
-
-.html i {
-    color: #E44D26;
-}
-
-.java i {
-    color: #f2f2f2;
-}
-
-.python i {
-    color: #FFE873;
-}
-
-.sql i {
-    color: #B8BACE;
-}
 
 
 /* ------------------ SERVIÇOS ------------------ */
 .servicos {
+    max-width: 1200px;
     padding: 80px;
+    margin: 0 auto;
+    /* Centraliza a section na tela */
     position: relative;
     background-size: cover;
     overflow-x: hidden;
     gap: 20px;
-    margin: 0;
     z-index: 0;
     text-align: center;
 }
+
 
 .servicos hr {
     width: 65px;
@@ -533,7 +555,6 @@ header button.menu-lenguage {
 }
 
 .servico div:hover {
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
     transform: translateY(-6px) scale(1.02);
 }
 
@@ -570,7 +591,6 @@ header button.menu-lenguage {
     flex: 0 0 300px;
     height: 360px;
     background: linear-gradient(145deg, #0D1980, #1c2a9a);
-    color: #ffffff;
     display: flex;
     flex-direction: column;
     cursor: pointer;
@@ -587,7 +607,7 @@ header button.menu-lenguage {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color: white;
+    color: #f2f2f2;
 }
 
 .card .img {
@@ -630,13 +650,11 @@ header button.menu-lenguage {
     font-size: 1.4rem;
     font-weight: 600;
     margin-bottom: 12px;
-    color: #ffffff;
 }
 
 .card-content p {
     font-size: 1rem;
     flex-grow: 1;
-    color: #d1d1d1;
     line-height: 1.5;
     margin-bottom: 16px;
 }
@@ -647,8 +665,7 @@ header button.menu-lenguage {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: #2a2a2a;
-    color: #fff;
+    background: var(--azul);
     font-size: 1.5rem;
     width: 50px;
     height: 50px;
@@ -661,10 +678,12 @@ header button.menu-lenguage {
     transition: background-color 0.3s ease, transform 0.2s ease;
     user-select: none;
     z-index: 20;
+    color: white;
+
 }
 
 .nav-btn:hover {
-    background-color: #0e0e0f;
+    background-color: var(--azul-claro);
     transform: scale(1.1);
 }
 

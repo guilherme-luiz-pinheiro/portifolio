@@ -122,7 +122,7 @@ document.getElementById('btn-linkedin').addEventListener('click', () => {
 });
 document.getElementById('btn-whatsapp').addEventListener('click', () => {
     const mensagem = encodeURIComponent('Olá Guilherme. Gostaria de mais informações!');
-    const numero = '11977315574';
+    const numero = '5511977315574';
     const url = `https://wa.me/${numero}?text=${mensagem}`;
     window.open(url, '_blank');
 });
@@ -150,7 +150,6 @@ btnVoltar.addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
-
 
 // Inicializa
 updateCarousel();
