@@ -87,10 +87,7 @@ body button {
     border-radius: 12px;
 }
 
-body:hover i {
-    transform: scale(1.2);
-    transition: 0.3s ease;
-}
+
 
 div {
     border-radius: 12px;
@@ -399,9 +396,10 @@ header button.menu-lenguage {
     opacity: 1;
 }
 
-
 /* ------------------ FERRAMENTAS ------------------ */
 .ferramentas {
+    max-width: 900px;
+    margin: 0 auto; /* Centraliza horizontalmente */
     padding-bottom: 80px;
     display: flex;
     flex-direction: column;
@@ -409,6 +407,7 @@ header button.menu-lenguage {
     justify-content: center;
     text-align: center;
 }
+
 
 .ferramenta {
     display: flex;
@@ -420,12 +419,18 @@ header button.menu-lenguage {
 }
 
 .ferramenta div {
+
+    border: 2px solid var(--azul);
     display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 100px;
+    /* Alinha verticalmente */
+    justify-content: left;
+    /* Alinha horizontalmente */
+    width: 150px;
+    /* Defina uma altura para ter espaço para alinhar */
     transition: transform 0.3s ease;
-    padding: 10px;
+    gap: 20px;
+    padding: 15px;
 }
 
 .ferramenta div:hover {
@@ -435,10 +440,9 @@ header button.menu-lenguage {
 /* Ícones */
 .ferramenta i,
 .ferramenta img {
-    font-size: 56px;
-    height: 60px;
+    font-size: 36px;
+    height: 40px;
     transition: transform 0.3s ease;
-    margin-bottom: 12px;
 }
 
 /* Legenda */
