@@ -44,7 +44,6 @@ body h1 {
 
 }
 
-
 body h2 {
     background: linear-gradient(90deg,
             var(--azul) 0%,
@@ -88,8 +87,6 @@ body button {
     border-radius: 12px;
 }
 
-
-
 div {
     border-radius: 12px;
     opacity: 1;
@@ -112,7 +109,6 @@ header {
     display: flex;
     justify-content: center;
     transition: top 0.3s ease;
-
 }
 
 #header.hide {
@@ -123,7 +119,6 @@ header {
 nav {
     display: flex;
     align-items: center;
-    color: white;
 }
 
 nav ul.menu {
@@ -143,14 +138,13 @@ nav ul.menu li {
     padding: 0 10px 0 20px;
     display: flex;
     align-items: center;
-    color: white;
 }
 
 header button.menu-button,
 header button.menu-lenguage {
+    color: white;
     background: none;
     border: none;
-    color: white;
     font: inherit;
     cursor: pointer;
     padding: 0 20px;
@@ -166,6 +160,85 @@ header button.menu-lenguage {
     width: 18px;
     height: 18px;
     margin-top: 2px;
+}
+
+.language {
+    position: relative;
+}
+
+.language-selected {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.language-selected:before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image: url(https://flagcdn.com/w40/br.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 10px;
+}
+
+.language-selected.change-br:before {
+    background-image: url(https://flagcdn.com/w40/br.png);
+}
+
+.language-selected.change-en:before {
+    background-image: url(https://flagcdn.com/w40/us.png);
+}
+
+.language-selected.change-es:before {
+    background-image: url(https://flagcdn.com/w40/es.png);
+}
+
+.language ul {
+    position: absolute;
+    width: 140px;
+    background-color: var(--azul-escuro);
+    padding-top: 10px;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.language ul li {
+    list-style: none;
+}
+
+.language ul li a {
+
+    display: block;
+    padding: 5px 10px;
+}
+
+.language ul li a:before {
+    content: '';
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+a.br:before {
+    background-image: url(https://flagcdn.com/w40/br.png);
+}
+
+a.en:before {
+    background-image: url(https://flagcdn.com/w40/us.png);
+}
+
+a.es:before {
+    background-image: url(https://flagcdn.com/w40/es.png);
+}
+
+.language:hover ul {
+    display: block;
 }
 
 /* ------------------ BOTÕES FIXADOS ------------------ */
