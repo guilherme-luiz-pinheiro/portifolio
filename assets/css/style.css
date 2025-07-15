@@ -480,8 +480,35 @@ header button.menu-lenguage {
 .ferramenta svg {
     font-size: 39px;
     height: 40px;
-    color: var(--azul);
     transition: transform 0.3s ease;
+}
+
+.react i {
+    color: #61DBFB;
+}
+
+.javascript i {
+    color: #F7DF1E;
+}
+
+.css i {
+    color: #2965F1;
+}
+
+.html i {
+    color: #E44D26;
+}
+
+.java i {
+    color: #f2f2f2;
+}
+
+.python i {
+    color: #FFE873;
+}
+
+.sql i {
+    color: #B8BACE;
 }
 
 .ferramenta svg {
