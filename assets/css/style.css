@@ -340,7 +340,6 @@ header button.menu-lenguage {
 }
 
 .textoPerfil {
-    margin-top: 40px;
     display: flex;
     flex-direction: column;
     max-width: 600px;
