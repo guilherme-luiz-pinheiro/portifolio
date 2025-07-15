@@ -68,6 +68,14 @@ function checkFade() {
     const divs = document.querySelectorAll('div');
 
     divs.forEach(div => {
+
+        if (
+            div.classList.contains('language') ||
+            div.closest('.language') || // ignora divs dentro da .language
+            div.id === 'header' || // evita apagar o header
+            div.closest('#header') // ignora filhos do header
+        ) return;
+
         const rect = div.getBoundingClientRect();
         const windowHeight = window.innerHeight;
 
@@ -92,9 +100,7 @@ function checkFade() {
     });
 }
 
-window.addEventListener('scroll', checkFade);
-window.addEventListener('load', checkFade);
-window.addEventListener('resize', checkFade);
+
 
 let lastScrollTop = 0;
 const header = document.getElementById('header');
@@ -516,6 +522,8 @@ $(function () {
         $("footer .copyright").text("© 2025 Guilherme Pinheiro — Todos los derechos reservados.");
     });
 });
-
+window.addEventListener('scroll', checkFade);
+window.addEventListener('load', checkFade);
+window.addEventListener('resize', checkFade);
 // Inicializa
 updateCarousel();

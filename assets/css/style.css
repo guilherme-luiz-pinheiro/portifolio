@@ -31,6 +31,7 @@ body {
 body p,
 body a {
     font-size: 16px;
+    text-decoration: none;
 }
 
 .azul {
@@ -68,14 +69,17 @@ body h4 {
 body button:hover {
     transform: scale(1.1);
     transition: 0.3s ease;
-    background-color: #17171b;
-    color: #fff;
+    background-color: var(--azul-claro);
+}
+
+body a:hover {
+    color: var(--azul-claro);
 }
 
 body button {
     align-self: flex-start;
-    background: #ffffff;
-    color: #242424;
+    background: var(--azul);
+    color: white;
     border: none;
     padding: 8px 16px;
     border-radius: 24px;
@@ -142,7 +146,6 @@ nav ul.menu li {
 
 header button.menu-button,
 header button.menu-lenguage {
-    color: white;
     background: none;
     border: none;
     font: inherit;
@@ -197,6 +200,7 @@ header button.menu-lenguage {
 
 .language ul {
     position: absolute;
+    border-radius: 8px;
     width: 140px;
     background-color: var(--azul-escuro);
     padding-top: 10px;
@@ -209,7 +213,6 @@ header button.menu-lenguage {
 }
 
 .language ul li a {
-
     display: block;
     padding: 5px 10px;
 }
@@ -300,12 +303,6 @@ a.es:before {
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-/* Hover animado */
-.fixado button:hover {
-    transform: scale(1.15);
-    background-color: var(--azul-claro);
 }
 
 /* ------------------ PERFIL ------------------ */
@@ -782,27 +779,17 @@ a.es:before {
     border-radius: 50%;
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     background: var(--azul);
     font-size: 1.5rem;
     width: 50px;
     height: 50px;
     border: none;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
     user-select: none;
     z-index: 20;
-    color: white;
-
-}
-
-.nav-btn:hover {
-    background-color: var(--azul-claro);
-    transform: scale(1.1);
 }
 
 .nav-btn.prev {
@@ -867,11 +854,6 @@ footer {
     padding-inline: clamp(40px, 5vw, 120px);
 }
 
-
-
-
-
-
 textarea {
     resize: none;
     /* Desativa o redimensionamento */
@@ -893,7 +875,6 @@ textarea {
 .contatos a {
     font-size: 15px;
     line-height: 1.6;
-    text-decoration: none;
     transition: color 0.3s ease;
 }
 
