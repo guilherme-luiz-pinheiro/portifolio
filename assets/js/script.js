@@ -23,7 +23,7 @@ const dots = document.querySelectorAll('.dot');
 function updateCarousel() {
     const cardWidth = cards[0].offsetWidth;
     const containerWidth = carousel.parentElement.offsetWidth;
-    const overlap = 60; // mesmo valor do margin-left negativo
+    const overlap = 90; // mesmo valor do margin-left negativo
     const cardSpacing = cardWidth - overlap;
 
     const offset = cardSpacing * activeIndex - (containerWidth / 2 - cardWidth / 2);
