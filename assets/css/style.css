@@ -477,7 +477,6 @@ a.es:before {
     border-radius: 12px;
     background: var(--azul-escuro);
     padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     text-align: center;
     cursor: pointer;
     transition: transform 0.7s ease, max-height 0.7s ease, max-width 0.7s ease;
@@ -612,6 +611,7 @@ a.es:before {
 }
 
 .box-azul h2 {
+    
     margin: 0;
 }
 
