@@ -486,6 +486,9 @@ a.es:before {
 }
 
 .extra-text {
+    text-align: center;
+    font-weight: normal;
+
     display: block;
     margin-top: 8px;
     opacity: 0;
@@ -496,7 +499,6 @@ a.es:before {
     transform: scale(1.05);
     max-height: 200px;
     max-width: 270px;
-
 }
 
 .container:hover p .extra-text {
@@ -611,7 +613,7 @@ a.es:before {
 }
 
 .box-azul h2 {
-    
+
     margin: 0;
 }
 
