@@ -68,7 +68,9 @@ body h4 {
 
 /* ------------------ EFEITOS GLOBAIS ------------------ */
 body button:hover {
-    border: 2px solid white;
+    transform: scale(1.1);
+    transition: 0.3s ease;
+    background-color: var(--azul-claro);
 }
 
 body a:hover {
@@ -687,17 +689,28 @@ a.es:before {
 }
 
 .esquerda svg {
-  transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 
 .carousel-container {
     position: relative;
+    z-index: 0;
 
     padding-top: 40px;
     overflow: hidden;
     width: 1140px;
     max-width: 100%;
     margin: 0px auto;
+}
+
+.carousel-wrapper {
+    position: relative;
+    width: 1140px;
+    max-width: 100%;
+    margin: auto;
+    align-items: center;
+    /* Alinha os botões verticalmente */
+    justify-content: center;
 }
 
 .carousel {
@@ -787,28 +800,38 @@ a.es:before {
 
 /* Botões laterais */
 .nav-btn {
-    justify-content: center;
     position: absolute;
-    top: 50%;
+    top: 45%;
+    /* Ajuste fino para alinhar no meio */
+    transition: none;
+    /* REMOVE animações */
+
+    z-index: 10;
+    /* garante que fique acima */
     background: var(--azul);
-    color: white;
+    border: 2px solid var(--azul-claro);
     width: 50px;
     height: 40px;
-    border: 2px solid var(--azul-claro);
-    cursor: pointer;
     display: flex;
-    justify-content: center;
     align-items: center;
-    user-select: none;
-    z-index: 20;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .nav-btn.prev {
-    left: 0px;
+    left: -40px; /* Aumente esse valor para afastar mais da esquerda */
 }
 
 .nav-btn.next {
-    right: 0px;
+    right: -40px; /* Aumente esse valor para afastar mais da direita */
+}
+
+.nav-btn:hover {
+
+    transform: scale(1.0);
+    background-color: var(--azul);
+    border: 2px solid white;
+
 }
 
 /* Dots indicadores */

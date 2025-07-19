@@ -38,7 +38,7 @@ function updateCarousel() {
         card.style.transition = 'transform 0.3s ease';
 
         card.style.zIndex = idx === activeIndex ? 10 : 1;
-        card.style.opacity = idx === activeIndex ? '1' : '0.5';
+        card.style.opacity = idx === activeIndex ? '1' : '0.8';
 
         card.classList.toggle('active', idx === activeIndex);
     });
@@ -99,8 +99,6 @@ function checkFade() {
         div.style.opacity = visibilityRatio;
     });
 }
-
-
 
 let lastScrollTop = 0;
 const header = document.getElementById('header');
