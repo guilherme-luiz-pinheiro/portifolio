@@ -1,48 +1,85 @@
-<style>
-    .softskill {
-        font-size: 18px;
-        font-weight: bold;
-        background: linear-gradient(21.6deg, rgba(0, 0, 0, 0.3) 17.94%, rgba(13, 25, 128, 0.3) 89.6%), #1f1f1f;
-        color: #fff;
-        padding: 16px 24px;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        min-width: 220px;
-        cursor: pointer;
-        transition: transform 0.3s ease, max-height 0.3s ease;
-        overflow: hidden;
-        max-height: 40px;
-        /* altura inicial */
-    }
+<!DOCTYPE html>
+<html lang="en">
 
-    .extra-text {
-        display: block;
-        font-weight: normal;
-        font-size: 16px;
-        margin-top: 8px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Portfólio de Guilherme Luiz Pinheiro — Desenvolvedor Fullstack com experiência em soluções web, mobile e desktop.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    /* Quando o mouse passa no container, aumenta o <p> */
-    .container:hover .softskill {
-        transform: scale(1.05);
-        max-height: 200px;
-        /* expande para caber o texto extra */
-    }
+    <link rel="preload" as="style" href="https://use.fontawesome.com/releases/v6.5.0/css/all.css"
+        onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.0/css/all.css">
+    </noscript>
 
-    /* Mostra o texto escondido */
-    .container:hover .softskill .extra-text {
-        opacity: 1;
-    }
-</style>
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-<div class="container">
-    <p class="softskill">
-        Comunicação<br>
-        <span class="extra-text">Capacidade de expressar ideias de forma clara e eficaz, tanto verbalmente quanto por
-            escrito.</span>
-    </p>
-    <div class="popup">Detalhes adicionais aqui.</div>
-</div>
+<body>
+    <main>
+        <div class="slider" style="
+            --width: 100px;
+            --height: 50px;
+            --quantity: 10;
+        ">
+            <div class="list">
+                <div class="item" style="--position: 1"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 2"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 3"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 4"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 5"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 6"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 7"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 8"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 9"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 10"> <i class="fa-solid fa-database"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider" reverse="true" style="
+            --width: 200px;
+            --height: 200px;
+            --quantity: 9;
+        ">
+            <div class="list">
+                <div class="item" style="--position: 1"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 2"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 3"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 4"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 5"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 6"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 7"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 8"> <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="item" style="--position: 9"> <i class="fa-solid fa-database"></i>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
