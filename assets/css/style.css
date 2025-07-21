@@ -665,8 +665,8 @@ a.es:before {
 .gradiente-superior-esquerdo,
 .gradiente-inferior-direito {
     position: absolute;
-    width: 1200px;
-    height: 1200px;
+    width: 1300px;
+    height: 1300px;
     pointer-events: none;
     /* para não interferir em cliques */
     background-repeat: no-repeat;
@@ -675,20 +675,16 @@ a.es:before {
 
 /* Gradiente superior esquerdo */
 .gradiente-superior-esquerdo {
-    top: -500px;
-    left: -500px;
+    top: -700px;
+    left: -600px;
     background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.8) 5%, var(--azul-escuro) 60%);
 }
 
 /* Gradiente inferior direito */
 .gradiente-inferior-direito {
-    bottom: -500px;
-    right: -500px;
+    bottom: -700px;
+    right: -600px;
     background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.8) 5%, var(--azul-escuro) 60%);
-}
-
-.box-azul h2 {
-    margin: 0;
 }
 
 .box-azul {

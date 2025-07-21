@@ -74,9 +74,10 @@ function checkFade() {
             div.closest('.language') ||
             div.id === 'header' ||
             div.closest('#header') ||
-            div.closest('.slider') // ignore divs dentro do slider também
+            div.closest('.slider')||
+            div.closest('.gradiente-superior-esquerdo') ||
+            div.closest('.gradiente-inferior-direito') // ignore divs dentro do slider também
         ) return;
-
         const rect = div.getBoundingClientRect();
         const windowHeight = window.innerHeight;
 
