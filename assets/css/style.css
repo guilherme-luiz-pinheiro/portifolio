@@ -654,15 +654,12 @@ a.es:before {
 }
 
 .servicos-background {
-    overflow: hidden;
-    pointer-events: none;
-    z-index: -1;
-    background-position: 100% 150%;
-
-    background-image: url('../img/GG_LightOvalCentro_03.png');
-
+    background-image: radial-gradient(circle at -10% -30%, rgb(4, 66, 191, 0.8)
+ 5%, transparent 60%);
     background-repeat: no-repeat;
-    background-size: 2000px 1000px;
+    background-size: 1000px 1000px;
+    /* teste valores para controlar tamanho */
+
 }
 
 
