@@ -4,6 +4,7 @@
     /* Base */
     --azul-escuro: #010d26;
     --azul-escuro2: #011140;
+    --azul-intermediario: #049ac0;
     --azul: #0442bf;
     --azul-claro: #05cef2;
     --cinza-claro: #f2f2f2;
@@ -97,6 +98,7 @@ div {
 div.hidden {
     opacity: 0;
 }
+
 
 /* ------------------ HEADER E NAVEGAÇÃO ------------------ */
 header {
@@ -650,6 +652,19 @@ a.es:before {
     flex-direction: column;
     align-items: center;
 }
+
+.servicos-background {
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+    background-position: 100% 150%;
+
+    background-image: url('../img/GG_LightOvalCentro_03.png');
+
+    background-repeat: no-repeat;
+    background-size: 2000px 1000px;
+}
+
 
 .box-azul h2 {
     margin: 0;
