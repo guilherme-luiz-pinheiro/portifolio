@@ -654,8 +654,10 @@ a.es:before {
 }
 
 .servicos-background {
-    background-image: radial-gradient(circle at -10% -30%, rgb(4, 66, 191, 0.8)
- 5%, transparent 60%);
+    background-image: radial-gradient(circle at -10% -30%,
+            rgba(4, 66, 191, 0.8) 5%,
+            var(--azul-escuro) 60%);
+
     background-repeat: no-repeat;
     background-size: 1000px 1000px;
     /* teste valores para controlar tamanho */
