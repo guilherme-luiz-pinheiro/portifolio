@@ -71,9 +71,10 @@ function checkFade() {
 
         if (
             div.classList.contains('language') ||
-            div.closest('.language') || // ignora divs dentro da .language
-            div.id === 'header' || // evita apagar o header
-            div.closest('#header') // ignora filhos do header
+            div.closest('.language') ||
+            div.id === 'header' ||
+            div.closest('#header') ||
+            div.closest('.slider') // ignore divs dentro do slider também
         ) return;
 
         const rect = div.getBoundingClientRect();
@@ -520,6 +521,7 @@ $(function () {
         $("footer .copyright").text("© 2025 Guilherme Pinheiro — Todos los derechos reservados.");
     });
 });
+
 window.addEventListener('scroll', checkFade);
 window.addEventListener('load', checkFade);
 window.addEventListener('resize', checkFade);
