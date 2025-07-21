@@ -654,16 +654,38 @@ a.es:before {
 }
 
 .servicos-background {
-    background-image: radial-gradient(circle at -10% -30%,
-            rgba(4, 66, 191, 0.8) 5%,
-            var(--azul-escuro) 60%);
-
-    background-repeat: no-repeat;
-    background-size: 1000px 1000px;
-    /* teste valores para controlar tamanho */
-
+    position: relative;
+    /* para posicionar filhos absolute dentro dela */
+    width: 100%;
+    /* ou o tamanho que quiser */
+    background-color: var(--azul-escuro);
+    overflow: hidden;
 }
 
+.gradiente-superior-esquerdo,
+.gradiente-inferior-direito {
+    position: absolute;
+    width: 1200px;
+    height: 1200px;
+    pointer-events: none;
+    /* para não interferir em cliques */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Gradiente superior esquerdo */
+.gradiente-superior-esquerdo {
+    top: -500px;
+    left: -500px;
+    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.8) 5%, var(--azul-escuro) 60%);
+}
+
+/* Gradiente inferior direito */
+.gradiente-inferior-direito {
+    bottom: -500px;
+    right: -500px;
+    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.8) 5%, var(--azul-escuro) 60%);
+}
 
 .box-azul h2 {
     margin: 0;
