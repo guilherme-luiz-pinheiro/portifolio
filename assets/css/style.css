@@ -518,6 +518,8 @@ a.es:before {
 
 /* ------------------ FERRAMENTAS ------------------ */
 .ferramentas {
+    z-index: 1;
+
     margin: 0 auto;
     /* Centraliza horizontalmente */
     padding-bottom: 80px;
@@ -645,7 +647,7 @@ a.es:before {
     background-size: cover;
     overflow-x: hidden;
     gap: 20px;
-    z-index: 0;
+    z-index: 1;
     text-align: center;
 
     display: flex;
@@ -654,6 +656,8 @@ a.es:before {
 }
 
 .servicos-background {
+    z-index: 0;
+
     position: relative;
     /* para posicionar filhos absolute dentro dela */
     width: 100%;
@@ -664,6 +668,7 @@ a.es:before {
 
 .gradiente-superior-esquerdo,
 .gradiente-inferior-direito {
+    z-index: -1;
     position: absolute;
     width: 1300px;
     height: 1300px;
