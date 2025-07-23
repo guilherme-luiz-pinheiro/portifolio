@@ -71,6 +71,11 @@ body button:hover {
     background-color: var(--azul-claro);
 }
 
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
 body a:hover {
     color: var(--azul-claro);
 }
@@ -981,6 +986,8 @@ input {
 }
 
 input, textarea {
+    border-radius:12px;
+    color: var(--texto-primario);
     box-sizing: border-box; /* Garante que padding e border não ultrapassem a largura */
 }
 
