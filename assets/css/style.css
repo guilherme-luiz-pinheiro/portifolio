@@ -971,12 +971,17 @@ footer {
 }
 
 textarea {
-    resize: none;
-    /* Desativa o redimensionamento */
-    width: 100%;
-    /* Ajuste a largura desejada */
-    height: 120px;
-    /* Altura fixa, você pode ajustar */
+    height: 120px; /* Altura fixa para textarea */
+    resize: none;  /* Desativa o redimensionamento */
+    width: 100%;   /* Largura total do container */
+}
+
+input {
+    width: 100%;   /* Largura total do container */
+}
+
+input, textarea {
+    box-sizing: border-box; /* Garante que padding e border não ultrapassem a largura */
 }
 
 .contatos h4 {
