@@ -763,8 +763,8 @@ a.es:before {
     text-align: center;
 }
 
-.gradiente-superior-esquerdo,
-.gradiente-inferior-direito {
+.gradiente-superior-direito,
+.gradiente-inferior-esquerdo {
     z-index: -1;
     position: absolute;
     width: 1300px;
@@ -776,14 +776,14 @@ a.es:before {
 }
 
 /* Gradiente superior esquerdo */
-.gradiente-superior-esquerdo {
+.gradiente-superior-direito {
     top: -700px;
     left: -600px;
     background-image: radial-gradient(circle at center, rgba(5, 206, 242, 0.7) 5%, var(--azul) 60%);
 }
 
 /* Gradiente inferior direito */
-.gradiente-inferior-direito {
+.gradiente-inferior-esquerdo {
     bottom: -900px;
     right: -800px;
     background-image: radial-gradient(circle at center, rgba(5, 206, 242, 0.7) 5%, var(--azul) 60%);
