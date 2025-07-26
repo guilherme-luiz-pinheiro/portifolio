@@ -757,10 +757,39 @@ a.es:before {
 
 /* ------------------ PROJETOS / CARROSSEL ------------------ */
 .projetos {
+    z-index: 0;
     padding: 60px;
     background-color: var(--azul);
     text-align: center;
 }
+
+.gradiente-superior-esquerdo,
+.gradiente-inferior-direito {
+    z-index: -1;
+    position: absolute;
+    width: 1300px;
+    height: 1300px;
+    pointer-events: none;
+    /* para não interferir em cliques */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Gradiente superior esquerdo */
+.gradiente-superior-direito {
+    top: -700px;
+    left: -600px;
+    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.7) 5%, var(--azul-escuro) 60%);
+}
+
+/* Gradiente inferior direito */
+.gradiente-inferior-esquerdo {
+    bottom: -900px;
+    right: -800px;
+    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.7) 5%, var(--azul-escuro) 60%);
+}
+
+
 
 .projetos h2 {
     background: linear-gradient(90deg,
