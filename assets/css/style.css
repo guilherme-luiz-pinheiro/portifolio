@@ -776,20 +776,18 @@ a.es:before {
 }
 
 /* Gradiente superior esquerdo */
-.gradiente-superior-direito {
+.gradiente-superior-esquerdo {
     top: -700px;
     left: -600px;
-    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.7) 5%, var(--azul-escuro) 60%);
+    background-image: radial-gradient(circle at center, rgba(5, 206, 242, 0.7) 5%, var(--azul) 60%);
 }
 
 /* Gradiente inferior direito */
-.gradiente-inferior-esquerdo {
+.gradiente-inferior-direito {
     bottom: -900px;
     right: -800px;
-    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.7) 5%, var(--azul-escuro) 60%);
+    background-image: radial-gradient(circle at center, rgba(5, 206, 242, 0.7) 5%, var(--azul) 60%);
 }
-
-
 
 .projetos h2 {
     background: linear-gradient(90deg,
