@@ -757,10 +757,19 @@ a.es:before {
 
 /* ------------------ PROJETOS / CARROSSEL ------------------ */
 .projetos {
-    z-index: 0;
+    z-index: 1;
     padding: 60px;
-    background-color: var(--azul);
     text-align: center;
+}
+
+.projetos-background {
+    z-index: 0;
+    position: relative;
+    /* para posicionar filhos absolute dentro dela */
+    width: 100%;
+    /* ou o tamanho que quiser */
+    background-color: var(--azul);
+    overflow: hidden;
 }
 
 .gradiente-superior-direito,
