@@ -72,8 +72,8 @@ body button:hover {
 }
 
 ul {
-  list-style: none;
-  padding-left: 0;
+    list-style: none;
+    padding-left: 0;
 }
 
 body a:hover {
@@ -1011,18 +1011,24 @@ footer {
 }
 
 textarea {
-    height: 120px; /* Altura fixa para textarea */
-    resize: none;  /* Desativa o redimensionamento */
-    width: 100%;   /* Largura total do container */
+    height: 120px;
+    /* Altura fixa para textarea */
+    resize: none;
+    /* Desativa o redimensionamento */
+    width: 100%;
+    /* Largura total do container */
 }
 
 input {
-    width: 100%;   /* Largura total do container */
+    width: 100%;
+    /* Largura total do container */
 }
 
-input, textarea {
+input,
+textarea {
     color: var(--texto-primario);
-    box-sizing: border-box; /* Garante que padding e border não ultrapassem a largura */
+    box-sizing: border-box;
+    /* Garante que padding e border não ultrapassem a largura */
 }
 
 .contatos h4 {
@@ -1037,11 +1043,23 @@ input, textarea {
 .contatos a {
     font-size: 15px;
     line-height: 1.6;
-    transition: color 0.3s ease;
 }
 
 footer a:hover {
     color: var(--azul-claro);
+    transition: color 0.3s ease;
+
+}
+
+.aesquerda:hover {
+    transform: translateX(10px);
+    /* aumenta e move 10px para a direita */
+}
+
+.aesquerda {
+    display: inline-block;
+    /* necessário para o transform funcionar corretamente */
+    transition: transform 0.3s ease;
 }
 
 .leftRows {
