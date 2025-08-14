@@ -59,6 +59,8 @@ body h2 {
 
 body h3 {
     font-size: 24px;
+    font-weight: normal;
+
 }
 
 body h4 {
@@ -93,7 +95,6 @@ body button {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-
 div {
     border-radius: 12px;
     opacity: 1;
@@ -103,7 +104,6 @@ div {
 div.hidden {
     opacity: 0;
 }
-
 
 /* ------------------ HEADER E NAVEGAÇÃO ------------------ */
 header {
@@ -116,6 +116,11 @@ header {
     display: flex;
     justify-content: center;
     transition: top 0.3s ease;
+}
+
+header.scrolled {
+    background-color: rgba(0, 0, 0, 0.8);
+    /* cor ao descer */
 }
 
 nav {
@@ -470,6 +475,7 @@ a.es:before {
     background-color: rgb(238, 236, 236);
     width: 320px;
     height: 70px;
+
     text-align: center;
 
     display: flex;
@@ -478,7 +484,6 @@ a.es:before {
     /* Centraliza horizontalmente */
     align-items: center;
     /* Centraliza verticalmente */
-
 }
 
 .softskill {
@@ -689,14 +694,14 @@ a.es:before {
 .gradiente-superior-esquerdo {
     top: -700px;
     left: -600px;
-    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.7) 5%, var(--azul-escuro) 60%);
+    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.5) 5%, var(--azul-escuro) 60%);
 }
 
 /* Gradiente inferior direito */
 .gradiente-inferior-direito {
     bottom: -900px;
     right: -800px;
-    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.7) 5%, var(--azul-escuro) 60%);
+    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.5) 5%, var(--azul-escuro) 60%);
 }
 
 .box-azul {
@@ -805,6 +810,17 @@ a.es:before {
             var(--azul-claro) 60%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    text-align: center;
+    margin: 0 auto;
+    /* centraliza horizontalmente */
+
+    display: flex;
+    /* Ativa o Flexbox */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
 }
 
 .esquerda svg {
@@ -849,8 +865,13 @@ a.es:before {
     border-radius: 12px;
     margin-left: -90px;
     flex: 0 0 300px;
-    height: 360px;
-    background: linear-gradient(145deg, #0D1980, #1c2a9a);
+    height: 340px;
+    background: linear-gradient(135deg,
+            /* diagonal de cima-esquerda para baixo-direita */
+            var(--azul-escuro) 0%,
+            var(--azul-escuro) 40%,
+            var(--azul) 150%);
+
     display: flex;
     flex-direction: column;
     cursor: pointer;
@@ -860,21 +881,7 @@ a.es:before {
     position: relative;
     transform-origin: center center;
     overflow: hidden;
-}
-
-.card.card-portifolio {
-    background-image: url('../img/Wireframe\ portifolio.svg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.card .img {
-    background-size: cover;
-    background-position: top center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 100%;
+    padding: 12px;
 }
 
 .card.active {
@@ -883,39 +890,26 @@ a.es:before {
     z-index: 10;
 }
 
-.card:hover {
-    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.5);
-}
-
 .card img {
     width: 100%;
-    height: 160px;
+    height: 200px;
     object-fit: cover;
     filter: brightness(0.9);
-    border-top-left-radius: 18px;
-    border-top-right-radius: 18px;
+    border-radius: 12px;
+    margin-bottom: 12px;
 }
 
 .card-content {
-    padding: 20px;
+    padding: 5px 10px;
+    border-radius: 0px;
+    width: 220px;
+    text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
     overflow: hidden;
 }
-
-.card-content h3 {
-    margin-bottom: 10px;
-}
-
-.card-content p {
-    font-size: 1rem;
-    flex-grow: 1;
-    line-height: 1.5;
-    margin-bottom: 16px;
-}
-
 
 /* Botões laterais */
 .nav-btn {
@@ -987,11 +981,51 @@ a.es:before {
 
 /* ------------------ FOOTER ------------------ */
 footer {
+    position: relative;
     width: 100%;
     padding: 60px 20px 20px;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    overflow: hidden;
+    /* impede que os gradientes aumentem o tamanho visível */
+
+}
+
+.footer-gradiente-inferior-esquerdo,
+.footer-gradiente-inferior-direito {
+    z-index: -2;
+    position: absolute;
+    width: 110vw;  /* Largura = 100% da largura da tela */
+    height: 80vh; /* Altura = 100% da altura da tela */
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/* Gradiente superior esquerdo */
+.footer-gradiente-inferior-esquerdo {
+    bottom: -40vh;
+    left: -50%;
+    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.5) 5%, var(--azul-escuro) 35%);
+}
+
+/* Gradiente inferior direito */
+.footer-gradiente-inferior-direito {
+    bottom: -40vh;
+    right: -50%;
+    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.5) 5%, var(--azul-escuro) 35%);
+}
+
+.projetos-background {
+    z-index: 0;
+    position: relative;
+    /* para posicionar filhos absolute dentro dela */
+    width: 100%;
+    /* ou o tamanho que quiser */
+    background-color: var(--azul);
+    overflow: hidden;
 }
 
 .contatos {
@@ -1032,23 +1066,14 @@ textarea {
     /* Garante que padding e border não ultrapassem a largura */
 }
 
-.contatos h4 {
-    margin-bottom: 14px;
-}
-
-.contatos h3 {
-    font-size: 30px;
-}
-
 .contatos p,
 .contatos a {
-    font-size: 15px;
     line-height: 1.6;
 }
 
 footer a:hover {
     color: var(--azul-claro);
-    transition: color 0.3s ease;
+    transition: color 0.5s ease;
 
 }
 

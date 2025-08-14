@@ -106,18 +106,17 @@ let lastScrollTop = 0;
 const header = document.getElementById('header');
 
 window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
+    const header = document.querySelector('header');
+    const scrollPosition = window.scrollY;
 
-    if (currentScroll > lastScrollTop) {
-        // Rolando para baixo
-        header.classList.add('hide');
+    // Quando o scroll passar de 50px, adiciona a classe 'scrolled'
+    if (scrollPosition > 50) {
+        header.classList.add('scrolled');
     } else {
-        // Rolando para cima
-        header.classList.remove('hide');
+        header.classList.remove('scrolled');
     }
-
-    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Evita valores negativos
 });
+
 
 document.getElementById('btn-github').addEventListener('click', () => {
     window.open('https://github.com/guilherme-luiz-pinheiro', '_blank');
