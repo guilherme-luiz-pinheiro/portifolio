@@ -98,7 +98,7 @@ body button {
 div {
     border-radius: 12px;
     opacity: 1;
-    transition: opacity 0.6s ease;
+    transition: opacity 0.7s ease;
 }
 
 div.hidden {
@@ -263,7 +263,6 @@ a.es:before {
 .redes-sociais {
     display: flex;
     gap: 20px;
-    flex-direction: row;
 }
 
 /* Botão de voltar (seta) */
@@ -694,14 +693,14 @@ a.es:before {
 .gradiente-superior-esquerdo {
     top: -700px;
     left: -600px;
-    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.5) 5%, var(--azul-escuro) 60%);
+    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.7) 5%, var(--azul-escuro) 60%);
 }
 
 /* Gradiente inferior direito */
 .gradiente-inferior-direito {
     bottom: -900px;
     right: -800px;
-    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.5) 5%, var(--azul-escuro) 60%);
+    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.7) 5%, var(--azul-escuro) 60%);
 }
 
 .box-azul {
@@ -870,7 +869,7 @@ a.es:before {
             /* diagonal de cima-esquerda para baixo-direita */
             var(--azul-escuro) 0%,
             var(--azul-escuro) 40%,
-            var(--azul) 150%);
+            var(--azul) 140%);
 
     display: flex;
     flex-direction: column;
@@ -885,7 +884,6 @@ a.es:before {
 }
 
 .card.active {
-    opacity: 1;
     transform: scale(1.1);
     z-index: 10;
 }
@@ -894,7 +892,7 @@ a.es:before {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    filter: brightness(0.9);
+    filter: brightness(0.8);
     border-radius: 12px;
     margin-bottom: 12px;
 }
@@ -979,6 +977,56 @@ a.es:before {
     box-shadow: 0 0 8px #2a2a2a;
 }
 
+.colunaProjeto {
+    display: flex;
+    /* Ativa o Flexbox */
+    gap: -200px;
+}
+
+.circulo {
+    font-size: 30px;
+    display: flex;
+    /* Adicione isso */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    margin:  0px -1px;
+}
+
+/* Aplica opacidade no terceiro item */
+.mais-opacity {
+    /* Para navegadores baseados em WebKit (Chrome, Edge, Safari) */
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+
+    /* Para Firefox */
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+
+    /* Mantém o ícone visível */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Círculo do + */
+.mais {
+    font-size: 10px;
+    /* aumenta para ficar proporcional */
+    margin-left: -15px;
+    /* ajuste do espaço */
+    color: white;
+    opacity: 0.1;
+    /* visível */
+}
+
+
 /* ------------------ FOOTER ------------------ */
 footer {
     position: relative;
@@ -989,15 +1037,16 @@ footer {
     flex-direction: column;
     overflow: hidden;
     /* impede que os gradientes aumentem o tamanho visível */
-
 }
 
 .footer-gradiente-inferior-esquerdo,
 .footer-gradiente-inferior-direito {
     z-index: -2;
     position: absolute;
-    width: 110vw;  /* Largura = 100% da largura da tela */
-    height: 80vh; /* Altura = 100% da altura da tela */
+    width: 110vw;
+    /* Largura = 100% da largura da tela */
+    height: 80vh;
+    /* Altura = 100% da altura da tela */
     pointer-events: none;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1008,24 +1057,14 @@ footer {
 .footer-gradiente-inferior-esquerdo {
     bottom: -40vh;
     left: -50%;
-    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.5) 5%, var(--azul-escuro) 35%);
+    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.7) 5%, var(--azul-escuro) 35%);
 }
 
 /* Gradiente inferior direito */
 .footer-gradiente-inferior-direito {
     bottom: -40vh;
     right: -50%;
-    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.5) 5%, var(--azul-escuro) 35%);
-}
-
-.projetos-background {
-    z-index: 0;
-    position: relative;
-    /* para posicionar filhos absolute dentro dela */
-    width: 100%;
-    /* ou o tamanho que quiser */
-    background-color: var(--azul);
-    overflow: hidden;
+    background-image: radial-gradient(circle at center, rgba(4, 66, 191, 0.7) 5%, var(--azul-escuro) 35%);
 }
 
 .contatos {
@@ -1074,7 +1113,6 @@ textarea {
 footer a:hover {
     color: var(--azul-claro);
     transition: color 0.5s ease;
-
 }
 
 .aesquerda:hover {
