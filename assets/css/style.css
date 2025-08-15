@@ -271,16 +271,15 @@ a.es:before {
     bottom: 110px;
     right: 40px;
     width: 30px;
-    height: 45px;
+    height: 40px;
     border: none;
-    border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
-
+    font-size: 18px;
     padding: 0;
     margin: 0;
     opacity: 0;
@@ -317,15 +316,16 @@ a.es:before {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    padding: 40px 0px;
+    padding: 100px 0px;
     z-index: 1;
     overflow: visible;
     /* garante que a parte fora continue visível */
 }
 
 .seta {
-    padding: 0;
+    padding: 15px;
     margin: 0;
+    margin-bottom: 10px;
     position: absolute;
     height: 80px;
     bottom: 3px;
@@ -335,7 +335,7 @@ a.es:before {
     display: flex;
     align-items: center;
     justify-content: center;
-
+    font-size: 30px;
     border-radius: 30px;
     animation: subirDescer 1.5s ease-in-out infinite;
 }
@@ -425,6 +425,7 @@ a.es:before {
     display: flex;
     flex-direction: column;
     max-width: 600px;
+    margin-bottom: 40px;
     text-align: center;
     align-items: center;
 }
@@ -454,7 +455,7 @@ a.es:before {
 
     /* borda preta de 2px */
     /* opcional, cor de fundo clara */
-    margin: 20px 20px;
+    margin: 0px 20px;
     /* centraliza horizontalmente */
     padding: 20px 20px;
 }
@@ -465,8 +466,8 @@ a.es:before {
     align-items: center;
     height: auto;
     background-color: var(--cinza-claro);
-    padding: 80px;
-    gap: 30px;
+    padding: 100px 0px;
+    gap: 40px;
 }
 
 .box-branco {
@@ -533,7 +534,6 @@ a.es:before {
 
     margin: 0 auto;
     /* Centraliza horizontalmente */
-    padding-bottom: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -651,7 +651,6 @@ a.es:before {
 /* ------------------ SERVIÇOS ------------------ */
 .servicos {
     max-width: 1200px;
-    padding: 80px;
     margin: 0 auto;
     /* Centraliza a section na tela */
     position: relative;
@@ -660,14 +659,16 @@ a.es:before {
     gap: 20px;
     z-index: 1;
     text-align: center;
-
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 100px;
+
 }
 
 .servicos-background {
     z-index: 0;
+    padding: 100px 0px;
 
     position: relative;
     /* para posicionar filhos absolute dentro dela */
@@ -763,7 +764,6 @@ a.es:before {
 /* ------------------ PROJETOS / CARROSSEL ------------------ */
 .projetos {
     z-index: 1;
-    padding: 60px;
     text-align: center;
 }
 
@@ -775,6 +775,8 @@ a.es:before {
     /* ou o tamanho que quiser */
     background-color: var(--azul);
     overflow: hidden;
+    padding: 100px 0px;
+
 }
 
 .gradiente-superior-direito,
@@ -820,10 +822,6 @@ a.es:before {
     /* Centraliza horizontalmente */
     align-items: center;
     /* Centraliza verticalmente */
-}
-
-.esquerda svg {
-    transform: rotate(180deg);
 }
 
 .carousel-container {
@@ -911,18 +909,16 @@ a.es:before {
 
 /* Botões laterais */
 .nav-btn {
+    font-size: 18px;
     position: absolute;
     top: 45%;
-    /* Ajuste fino para alinhar no meio */
-    transition: none;
-    /* REMOVE animações */
-
     z-index: 10;
-    /* garante que fique acima */
     background: var(--azul);
     border: 2px solid var(--azul-claro);
     width: 50px;
+    /* aumente se quiser um botão maior */
     height: 40px;
+    /* manter proporção quadrada deixa melhor */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -930,6 +926,7 @@ a.es:before {
 }
 
 .nav-btn.prev {
+
     left: -40px;
     /* Aumente esse valor para afastar mais da esquerda */
 }
@@ -950,7 +947,6 @@ a.es:before {
 /* Dots indicadores */
 .dots {
     padding-top: 20px;
-    padding-bottom: 40px;
     display: flex;
     justify-content: center;
     gap: 14px;
@@ -993,7 +989,7 @@ a.es:before {
     width: 35px;
     height: 35px;
     border-radius: 100%;
-    margin:  0px -1px;
+    margin: 0px -1px;
 }
 
 /* Aplica opacidade no terceiro item */
@@ -1026,12 +1022,11 @@ a.es:before {
     /* visível */
 }
 
-
 /* ------------------ FOOTER ------------------ */
 footer {
     position: relative;
     width: 100%;
-    padding: 60px 20px 20px;
+    padding: 100px 20px 20px;
     display: flex;
     justify-content: center;
     flex-direction: column;
