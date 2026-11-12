@@ -1,529 +1,377 @@
-const carousel = document.querySelector('.carousel');
-const cards = document.querySelectorAll('.card');
-const prevBtn = document.querySelector('.nav-btn.prev');
-const nextBtn = document.querySelector('.nav-btn.next');
-const dotsContainer = document.querySelector('.dots');
+/* =========================================================
+   PORTFÓLIO — INTERAÇÕES E MICROANIMAÇÕES
+========================================================= */
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
-let activeIndex = 4;
+const translations = {
+  pt: {
+    "nav.home":"Home","nav.about":"Sobre","nav.projects":"Projetos","nav.services":"Serviços","nav.contact":"Contato","nav.cv":"Baixar CV",
+    "hero.role":"DESENVOLVEDOR FULL STACK","hero.greeting":"Olá, eu sou","hero.tagline":"Crio soluções digitais completas: do design à programação.",
+    "hero.description":"Desenvolvedor com experiência em aplicações web, desktop e mobile. Transformo necessidades reais em soluções digitais eficientes, intuitivas e bem estruturadas.",
+    "hero.projects":"Explorar projetos","hero.contact":"Vamos conversar","hero.fact1":"Desenvolvimento","hero.fact2":"Experiências digitais","hero.fact3":"Visão completa","hero.note":"Código com propósito.",
+    "about.eyebrow":"MINHA JORNADA","about.title":"Tecnologia, criatividade e resolução de problemas.",
+    "about.p1":"Sou desenvolvedor com experiência no desenvolvimento de aplicações web, desktop e mobile. Tenho foco em soluções Full Stack, utilizando tecnologias como C#/.NET, JavaScript, HTML/CSS, bancos de dados relacionais, consumo de APIs REST e versionamento com Git.",
+    "about.p2":"Já atuei em projetos de sustentação e evolução de sistemas, criação de funcionalidades, testes e documentação técnica. Gosto de entender o problema por trás de cada demanda e transformar necessidades do negócio em soluções eficientes, escaláveis e alinhadas aos usuários.",
+    "soft.eyebrow":"ALÉM DO CÓDIGO","soft.title":"Soft skills que fazem diferença.","soft.subtitle":"Competências que levo para cada projeto e colaboração.",
+    "soft.communication":"Comunicação","soft.communicationDesc":"Transmitir ideias com clareza e ouvir diferentes perspectivas.","soft.adaptability":"Adaptabilidade","soft.adaptabilityDesc":"Ajustar-se a novos cenários, tecnologias e prioridades.","soft.organization":"Organização","soft.organizationDesc":"Estruturar tarefas e cumprir prazos com consistência.","soft.problem":"Resolução de problemas","soft.problemDesc":"Analisar cenários e encontrar soluções práticas.","soft.teamwork":"Trabalho em equipe","soft.teamworkDesc":"Colaborar para alcançar objetivos compartilhados.",
+    "services.eyebrow":"O QUE POSSO DESENVOLVER","services.title":"Soluções digitais para gerar valor.","services.subtitle":"Da concepção à implementação, com foco em qualidade e experiência de uso.",
+    "services.websites":"Sites responsivos","services.websitesDesc":"Sites modernos que se adaptam a diferentes dispositivos e tamanhos de tela.","services.systems":"Sistemas web","services.systemsDesc":"Sistemas sob medida para gestão, controle de processos e visualização de dados.","services.apis":"APIs RESTful","services.apisDesc":"Integrações seguras e eficientes para conectar aplicações e serviços.","services.dashboards":"Dashboards","services.dashboardsDesc":"Painéis visuais com indicadores que facilitam a análise de informações.","services.landing":"Landing pages","services.landingDesc":"Páginas rápidas e objetivas para apresentar produtos, serviços e campanhas.","services.integrations":"Integrações","services.integrationsDesc":"Conexão entre sistemas e automação de processos para reduzir tarefas manuais.",
+    "tools.eyebrow":"STACK & FERRAMENTAS","tools.title":"Tecnologias que fazem parte da minha rotina.",
+    "projects.eyebrow":"PORTFÓLIO","projects.title":"Projetos realizados.","projects.subtitle":"Alguns projetos e experiências que representam minha jornada em desenvolvimento.",
+    "projects.typeWeb":"WEB / EM DESENVOLVIMENTO","projects.typePersonal":"PROJETO PESSOAL","projects.typeApp":"APLICAÇÃO","projects.buscgame":"Versão aprimorada de um buscador e comparador de preços de jogos.","projects.portfolio":"Projeto desenvolvido desde o wireframe e mockup até a implementação da interface.","projects.other":"Outro projeto","projects.otherDesc":"Adicione aqui a descrição do projeto, seu objetivo e as tecnologias utilizadas.","projects.details":"Ver detalhes","projects.all":"Ver todos no GitHub","projects.open":"Abrir repositório","projects.loading":"Carregando projetos do GitHub...","projects.error":"Não foi possível carregar os projetos automaticamente. Acesse todos os repositórios no GitHub.",
+    "projects.buscgameExtra":"Projeto de busca e comparação de preços. Atualize este texto com o escopo, os desafios e o link real do projeto.","projects.portfolioExtra":"Projeto pessoal de interface e apresentação profissional. Atualize este texto com os detalhes do processo.","projects.otherExtra":"Inclua aqui contexto, funcionalidades, tecnologias e resultados deste projeto.",
+    "contact.eyebrow":"CONTATO","contact.title":"Bora conversar?","contact.subtitle":"Tem uma ideia, oportunidade ou projeto? Envie uma mensagem.","contact.name":"Nome completo","contact.email":"E-mail","contact.message":"Sua mensagem","contact.send":"Enviar mensagem","footer.rights":"Todos os direitos reservados."
+  },
+  en: {
+    "nav.home":"Home","nav.about":"About","nav.projects":"Projects","nav.services":"Services","nav.contact":"Contact","nav.cv":"Download CV",
+    "hero.role":"FULL STACK DEVELOPER","hero.greeting":"Hello, I'm","hero.tagline":"I create complete digital solutions: from design to development.",
+    "hero.description":"Developer experienced in web, desktop and mobile applications. I turn real needs into efficient, intuitive and well-structured digital solutions.",
+    "hero.projects":"Explore projects","hero.contact":"Let's talk","hero.fact1":"Development","hero.fact2":"Digital experiences","hero.fact3":"End-to-end vision","hero.note":"Code with purpose.",
+    "about.eyebrow":"MY JOURNEY","about.title":"Technology, creativity and problem-solving.",
+    "about.p1":"I'm a developer experienced in building web, desktop and mobile applications. I focus on Full Stack solutions using technologies such as C#/.NET, JavaScript, HTML/CSS, relational databases, REST APIs and Git version control.",
+    "about.p2":"I've worked on system maintenance and evolution, feature development, testing and technical documentation. I enjoy understanding the problem behind each request and turning business needs into efficient, scalable solutions focused on users.",
+    "soft.eyebrow":"BEYOND CODE","soft.title":"Soft skills that make a difference.","soft.subtitle":"The skills I bring to every project and collaboration.",
+    "soft.communication":"Communication","soft.communicationDesc":"Express ideas clearly and listen to different perspectives.","soft.adaptability":"Adaptability","soft.adaptabilityDesc":"Adjust to new scenarios, technologies and priorities.","soft.organization":"Organization","soft.organizationDesc":"Structure tasks and consistently meet deadlines.","soft.problem":"Problem solving","soft.problemDesc":"Analyze situations and find practical solutions.","soft.teamwork":"Teamwork","soft.teamworkDesc":"Collaborate to achieve shared goals.",
+    "services.eyebrow":"WHAT I CAN BUILD","services.title":"Digital solutions that create value.","services.subtitle":"From concept to implementation, focused on quality and user experience.",
+    "services.websites":"Responsive websites","services.websitesDesc":"Modern websites that adapt to different devices and screen sizes.","services.systems":"Web systems","services.systemsDesc":"Custom systems for management, process control and data visualization.","services.apis":"RESTful APIs","services.apisDesc":"Secure and efficient integrations that connect applications and services.","services.dashboards":"Dashboards","services.dashboardsDesc":"Visual panels with indicators that make information easier to analyze.","services.landing":"Landing pages","services.landingDesc":"Fast, focused pages to present products, services and campaigns.","services.integrations":"Integrations","services.integrationsDesc":"Connect systems and automate processes to reduce manual tasks.",
+    "tools.eyebrow":"STACK & TOOLS","tools.title":"Technologies that are part of my daily workflow.",
+    "projects.eyebrow":"PORTFOLIO","projects.title":"Selected projects.","projects.subtitle":"Projects and experiences that represent my development journey.","projects.typeWeb":"WEB / IN DEVELOPMENT","projects.typePersonal":"PERSONAL PROJECT","projects.typeApp":"APPLICATION","projects.buscgame":"An improved version of a search and price comparison tool for video games.","projects.portfolio":"Project developed from wireframe and mockup through interface implementation.","projects.other":"Another project","projects.otherDesc":"Add the project's description, goal and technologies used here.","projects.details":"View details","projects.all":"View all on GitHub","projects.open":"Open repository","projects.loading":"Loading GitHub projects...","projects.error":"Could not load projects automatically. Browse all repositories on GitHub.","projects.buscgameExtra":"Search and price comparison project. Update this text with scope, challenges and the real project link.","projects.portfolioExtra":"Personal interface and professional presentation project. Update this text with process details.","projects.otherExtra":"Add context, features, technologies and project results here.",
+    "contact.eyebrow":"CONTACT","contact.title":"Let's talk?","contact.subtitle":"Have an idea, opportunity or project? Send me a message.","contact.name":"Full name","contact.email":"Email address","contact.message":"Your message","contact.send":"Send message","footer.rights":"All rights reserved."
+  },
+  es: {
+    "nav.home":"Inicio","nav.about":"Sobre mí","nav.projects":"Proyectos","nav.services":"Servicios","nav.contact":"Contacto","nav.cv":"Descargar CV",
+    "hero.role":"DESARROLLADOR FULL STACK","hero.greeting":"Hola, soy","hero.tagline":"Creo soluciones digitales completas: del diseño al desarrollo.",
+    "hero.description":"Desarrollador con experiencia en aplicaciones web, de escritorio y móviles. Transformo necesidades reales en soluciones digitales eficientes, intuitivas y bien estructuradas.",
+    "hero.projects":"Explorar proyectos","hero.contact":"Hablemos","hero.fact1":"Desarrollo","hero.fact2":"Experiencias digitales","hero.fact3":"Visión integral","hero.note":"Código con propósito.",
+    "about.eyebrow":"MI TRAYECTORIA","about.title":"Tecnología, creatividad y resolución de problemas.",
+    "about.p1":"Soy desarrollador con experiencia en aplicaciones web, de escritorio y móviles. Me enfoco en soluciones Full Stack con tecnologías como C#/.NET, JavaScript, HTML/CSS, bases de datos relacionales, APIs REST y control de versiones con Git.",
+    "about.p2":"He trabajado en mantenimiento y evolución de sistemas, desarrollo de funcionalidades, pruebas y documentación técnica. Me gusta comprender el problema detrás de cada solicitud y transformar las necesidades del negocio en soluciones eficientes y escalables.",
+    "soft.eyebrow":"MÁS ALLÁ DEL CÓDIGO","soft.title":"Habilidades que marcan la diferencia.","soft.subtitle":"Competencias que aporto a cada proyecto y colaboración.",
+    "soft.communication":"Comunicación","soft.communicationDesc":"Expresar ideas con claridad y escuchar diferentes perspectivas.","soft.adaptability":"Adaptabilidad","soft.adaptabilityDesc":"Adaptarse a nuevos escenarios, tecnologías y prioridades.","soft.organization":"Organización","soft.organizationDesc":"Estructurar tareas y cumplir plazos con constancia.","soft.problem":"Resolución de problemas","soft.problemDesc":"Analizar situaciones y encontrar soluciones prácticas.","soft.teamwork":"Trabajo en equipo","soft.teamworkDesc":"Colaborar para alcanzar objetivos compartidos.",
+    "services.eyebrow":"QUÉ PUEDO DESARROLLAR","services.title":"Soluciones digitales que generan valor.","services.subtitle":"Desde la idea hasta la implementación, con foco en calidad y experiencia de usuario.",
+    "services.websites":"Sitios responsivos","services.websitesDesc":"Sitios modernos que se adaptan a diferentes dispositivos y tamaños de pantalla.","services.systems":"Sistemas web","services.systemsDesc":"Sistemas personalizados para gestión, control de procesos y visualización de datos.","services.apis":"APIs RESTful","services.apisDesc":"Integraciones seguras y eficientes para conectar aplicaciones y servicios.","services.dashboards":"Dashboards","services.dashboardsDesc":"Paneles visuales con indicadores que facilitan el análisis de información.","services.landing":"Landing pages","services.landingDesc":"Páginas rápidas y claras para presentar productos, servicios y campañas.","services.integrations":"Integraciones","services.integrationsDesc":"Conexión de sistemas y automatización de procesos para reducir tareas manuales.",
+    "tools.eyebrow":"STACK Y HERRAMIENTAS","tools.title":"Tecnologías que forman parte de mi rutina.",
+    "projects.eyebrow":"PORTAFOLIO","projects.title":"Proyectos realizados.","projects.subtitle":"Proyectos y experiencias que representan mi trayectoria en desarrollo.","projects.typeWeb":"WEB / EN DESARROLLO","projects.typePersonal":"PROYECTO PERSONAL","projects.typeApp":"APLICACIÓN","projects.buscgame":"Versión mejorada de un buscador y comparador de precios de videojuegos.","projects.portfolio":"Proyecto desarrollado desde el wireframe y mockup hasta la implementación de la interfaz.","projects.other":"Otro proyecto","projects.otherDesc":"Añade aquí la descripción, el objetivo y las tecnologías utilizadas.","projects.details":"Ver detalles","projects.all":"Ver todos en GitHub","projects.open":"Abrir repositorio","projects.loading":"Cargando proyectos de GitHub...","projects.error":"No se pudieron cargar los proyectos automáticamente. Consulta todos los repositorios en GitHub.","projects.buscgameExtra":"Proyecto de búsqueda y comparación de precios. Actualiza este texto con el alcance, los retos y el enlace real.","projects.portfolioExtra":"Proyecto personal de interfaz y presentación profesional. Actualiza este texto con los detalles del proceso.","projects.otherExtra":"Incluye aquí el contexto, las funciones, las tecnologías y los resultados.",
+    "contact.eyebrow":"CONTACTO","contact.title":"¿Hablamos?","contact.subtitle":"¿Tienes una idea, oportunidad o proyecto? Envíame un mensaje.","contact.name":"Nombre completo","contact.email":"Correo electrónico","contact.message":"Tu mensaje","contact.send":"Enviar mensaje","footer.rights":"Todos los derechos reservados."
+  }
+};
 
-// Cria os dots dinamicamente
-for (let i = 0; i < cards.length; i++) {
-    const dot = document.createElement('div');
-    dot.classList.add('dot');
-    if (i === activeIndex) dot.classList.add('active');
-    dot.addEventListener('click', () => {
-        activeIndex = i;
-        updateCarousel();
-    });
-    dotsContainer.appendChild(dot);
+const languageConfig = {
+  pt: { label: "PT-BR", flag: "https://flagcdn.com/w40/br.png", htmlLang: "pt-BR" },
+  en: { label: "EN-US", flag: "https://flagcdn.com/w40/us.png", htmlLang: "en" },
+  es: { label: "ES", flag: "https://flagcdn.com/w40/es.png", htmlLang: "es" }
+};
+
+function detectLanguage() {
+  const saved = localStorage.getItem("portfolio-language");
+  if (saved && translations[saved]) return saved;
+  const browser = (navigator.languages?.[0] || navigator.language || "pt-BR").slice(0, 2).toLowerCase();
+  return translations[browser] ? browser : "pt";
 }
 
-const dots = document.querySelectorAll('.dot');
+function setLanguage(language, persist = true) {
+  const dictionary = translations[language] || translations.pt;
+  const config = languageConfig[language] || languageConfig.pt;
+  document.documentElement.lang = config.htmlLang;
 
+  $$("[data-i18n]").forEach(element => {
+    const value = dictionary[element.dataset.i18n];
+    if (value !== undefined) element.textContent = value;
+  });
+  $$("[data-i18n-placeholder]").forEach(element => {
+    const value = dictionary[element.dataset.i18nPlaceholder];
+    if (value !== undefined) {
+      element.placeholder = value;
+      element.setAttribute("aria-label", value);
+    }
+  });
+
+  $("#language-label").textContent = config.label;
+  $("#language-flag").src = config.flag;
+  $$("[data-language]").forEach(button => {
+    button.setAttribute("aria-current", String(button.dataset.language === language));
+  });
+  if (persist) localStorage.setItem("portfolio-language", language);
+}
+
+const languageControl = $(".language");
+const languageToggle = $("#language-toggle");
+languageToggle.addEventListener("click", () => {
+  const open = languageControl.classList.toggle("is-open");
+  languageToggle.setAttribute("aria-expanded", String(open));
+});
+$$("[data-language]").forEach(button => button.addEventListener("click", () => {
+  setLanguage(button.dataset.language);
+  languageControl.classList.remove("is-open");
+  languageToggle.setAttribute("aria-expanded", "false");
+}));
+document.addEventListener("click", event => {
+  if (!languageControl.contains(event.target)) {
+    languageControl.classList.remove("is-open");
+    languageToggle.setAttribute("aria-expanded", "false");
+  }
+});
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    languageControl.classList.remove("is-open");
+    languageToggle.setAttribute("aria-expanded", "false");
+    menu.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  }
+});
+setLanguage(detectLanguage(), false);
+
+/* Theme */
+const themeToggle = $("#theme-toggle");
+function applyTheme(theme, persist = true) {
+  const selected = theme === "light" ? "light" : "dark";
+  document.documentElement.dataset.theme = selected;
+  themeToggle.innerHTML = selected === "light" ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+  themeToggle.setAttribute("aria-label", selected === "light" ? "Ativar tema escuro" : "Ativar tema claro");
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", selected === "light" ? "#f5f6f8" : "#090b10");
+  if (persist) localStorage.setItem("portfolio-theme", selected);
+}
+applyTheme(localStorage.getItem("portfolio-theme") || "dark", false);
+themeToggle.addEventListener("click", () => applyTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light"));
+
+/* Mobile navigation */
+const menu = $("#menu");
+const menuToggle = $("#menu-toggle");
+menuToggle.addEventListener("click", () => {
+  const open = menu.classList.toggle("is-open");
+  menuToggle.setAttribute("aria-expanded", String(open));
+  menuToggle.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+});
+$$(".menu a").forEach(link => link.addEventListener("click", () => {
+  menu.classList.remove("is-open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+}));
+
+/* Scroll progress, sticky header, top button and current section */
+const header = $("#header");
+const backToTop = $("#btn-voltar");
+const progress = $("#scroll-progress");
+const sections = $$("main section[id]");
+function handleScroll() {
+  const scrollY = window.scrollY;
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.width = `${maxScroll > 0 ? (scrollY / maxScroll) * 100 : 0}%`;
+  header.classList.toggle("is-scrolled", scrollY > 20);
+  backToTop.classList.toggle("is-visible", scrollY > 450);
+
+  let current = "";
+  sections.forEach(section => {
+    if (scrollY >= section.offsetTop - 155) current = section.id;
+  });
+  $$(".menu a").forEach(link => link.classList.toggle("active", link.getAttribute("href") === `#${current}`));
+}
+window.addEventListener("scroll", handleScroll, { passive: true });
+window.addEventListener("resize", handleScroll);
+handleScroll();
+backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+/* Reveal elements as the user scrolls; stagger groups for a layered entrance */
+const revealTargets = $$(".section-heading, .about-content, .section-intro, .softskill-card, .service-card, .tool-item, .project-card, .carousel-shell, .contact-panel, .hero-content, .hero-visual");
+revealTargets.forEach((element, index) => {
+  element.classList.add("reveal");
+  if (element.matches(".softskill-card, .service-card, .tool-item, .project-card")) {
+    element.style.transitionDelay = `${(index % 5) * 65}ms`;
+  }
+});
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: "0px 0px -35px 0px" });
+revealTargets.forEach(element => revealObserver.observe(element));
+
+/* Project cards expand to reveal additional information */
+$$(".project-action").forEach(button => {
+  button.addEventListener("click", () => {
+    const details = button.nextElementSibling;
+    const expanded = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", String(!expanded));
+    details.hidden = expanded;
+    const label = $("span", button);
+    const language = document.documentElement.lang.startsWith("en") ? "en" :
+      document.documentElement.lang.startsWith("es") ? "es" : "pt";
+    label.textContent = expanded
+      ? translations[language]["projects.details"]
+      : (language === "en" ? "Hide details" : language === "es" ? "Ocultar detalles" : "Ocultar detalhes");
+    $("i", button).className = expanded ? "fa-solid fa-arrow-up-right-from-square" : "fa-solid fa-chevron-up";
+  });
+});
+
+/* Gentle 3D tilt on pointer devices; disabled on touch and reduced-motion */
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (!reduceMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  $$(".softskill-card, .service-card, .tool-item").forEach(card => {
+    card.addEventListener("pointermove", event => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - .5;
+      const y = (event.clientY - rect.top) / rect.height - .5;
+      card.style.transform = `perspective(800px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg) translateY(-3px)`;
+    });
+    card.addEventListener("pointerleave", () => { card.style.transform = ""; });
+  });
+}
+
+/* Responsive carousel */
+const track = $(".carousel-track");
+const cards = $$(".project-card", track);
+const dotsContainer = $(".carousel-dots");
+const previousButton = $(".carousel-button.prev");
+const nextButton = $(".carousel-button.next");
+let carouselIndex = 0;
+
+function visibleCards() {
+  if (window.innerWidth <= 520) return 1;
+  if (window.innerWidth <= 980) return 2;
+  return 3;
+}
+function maxCarouselIndex() { return Math.max(0, cards.length - visibleCards()); }
 function updateCarousel() {
-    const cardWidth = cards[0].offsetWidth;
-    const containerWidth = carousel.parentElement.offsetWidth;
-    const overlap = 90; // mesmo valor do margin-left negativo
-    const cardSpacing = cardWidth - overlap;
+  if (!cards.length) return;
+  carouselIndex = Math.min(carouselIndex, maxCarouselIndex());
+  const cardWidth = cards[0].getBoundingClientRect().width;
+  const gap = parseFloat(getComputedStyle(track).gap) || 0;
+  track.style.transform = `translateX(-${carouselIndex * (cardWidth + gap)}px)`;
+  previousButton.disabled = carouselIndex === 0;
+  nextButton.disabled = carouselIndex >= maxCarouselIndex();
+  $$(".carousel-dots button").forEach((dot, index) => dot.setAttribute("aria-current", String(index === carouselIndex)));
+}
+function buildCarouselDots() {
+  dotsContainer.innerHTML = "";
+  for (let index = 0; index <= maxCarouselIndex(); index++) {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.setAttribute("aria-label", `Ir para projeto ${index + 1}`);
+    dot.addEventListener("click", () => { carouselIndex = index; updateCarousel(); });
+    dotsContainer.appendChild(dot);
+  }
+  updateCarousel();
+}
+previousButton.addEventListener("click", () => { carouselIndex = Math.max(0, carouselIndex - 1); updateCarousel(); });
+nextButton.addEventListener("click", () => { carouselIndex = Math.min(maxCarouselIndex(), carouselIndex + 1); updateCarousel(); });
+let resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(buildCarouselDots, 120);
+});
+buildCarouselDots();
 
-    const offset = cardSpacing * activeIndex - (containerWidth / 2 - cardWidth / 2);
-    carousel.style.transform = `translateX(${-offset}px)`;
 
-    cards.forEach((card, idx) => {
-        const distance = Math.abs(idx - activeIndex);
+/* Load public GitHub repositories and render clickable project cards.
+   Repositories are fetched live so the portfolio stays in sync with GitHub. */
+async function loadGithubProjects() {
+  const username = "guilherme-luiz-pinheiro";
+  const container = $("#github-projects");
+  const status = $("#projects-status");
+  if (!container || !status) return;
 
-        const scale = Math.max(0.4, 1 - distance * 0.2);
+  const language = document.documentElement.lang.startsWith("en") ? "en" :
+    document.documentElement.lang.startsWith("es") ? "es" : "pt";
+  status.textContent = translations[language]["projects.loading"];
 
-        card.style.transform = `scale(${scale})`;
-        card.style.transition = 'transform 0.3s ease';
-
-        card.style.zIndex = idx === activeIndex ? 10 : 1;
-        card.style.opacity = idx === activeIndex ? '1' : '0.8';
-
-        card.classList.toggle('active', idx === activeIndex);
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100&type=owner`, {
+      headers: { "Accept": "application/vnd.github+json" }
     });
+    if (!response.ok) throw new Error(`GitHub API: ${response.status}`);
+    const repositories = await response.json();
 
-    dots.forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === activeIndex);
+    const curated = repositories
+      .filter(repo => !repo.fork && !repo.archived)
+      .map(repo => {
+        const description = (repo.description || "").trim();
+        const name = repo.name.replace(/[-_]/g, " ");
+        const languageName = repo.language || "Código";
+        const score = (repo.stargazers_count * 5) +
+          (repo.topics?.length || 0) * 2 +
+          (description ? 3 : 0) +
+          (repo.homepage ? 2 : 0) +
+          (repo.size > 0 ? 1 : 0);
+        return { ...repo, displayName: name, displayDescription: description, languageName, score };
+      })
+      .sort((a, b) => b.score - a.score || new Date(b.updated_at) - new Date(a.updated_at))
+      .slice(0, 6);
+
+    container.innerHTML = "";
+    if (!curated.length) {
+      status.textContent = translations[language]["projects.error"];
+      container.innerHTML = `<div class="projects-empty">${translations[language]["projects.error"]}</div>`;
+      return;
+    }
+
+    status.textContent = language === "en"
+      ? `${curated.length} selected public repositories`
+      : language === "es"
+        ? `${curated.length} repositorios públicos seleccionados`
+        : `${curated.length} repositórios públicos selecionados`;
+
+    curated.forEach((repo, index) => {
+      const card = document.createElement("a");
+      card.className = "project-card reveal";
+      card.href = repo.html_url;
+      card.target = "_blank";
+      card.rel = "noopener noreferrer";
+      card.setAttribute("aria-label", `${repo.name} — abrir repositório no GitHub`);
+
+      const preview = document.createElement("div");
+      preview.className = "project-preview";
+      const icon = document.createElement("i");
+      icon.className = "fa-brands fa-github";
+      preview.appendChild(icon);
+
+      const body = document.createElement("div");
+      body.className = "project-body";
+
+      const type = document.createElement("span");
+      type.className = "project-type";
+      type.textContent = repo.private ? "PRIVATE" : "OPEN SOURCE";
+
+      const title = document.createElement("h3");
+      title.textContent = repo.displayName;
+
+      const description = document.createElement("p");
+      description.textContent = repo.displayDescription ||
+        (language === "en" ? "Public repository. Open it on GitHub to see the source code and details." :
+         language === "es" ? "Repositorio público. Ábrelo en GitHub para ver el código y los detalles." :
+         "Repositório público. Acesse o GitHub para conferir o código-fonte e os detalhes.");
+
+      const meta = document.createElement("div");
+      meta.className = "project-meta";
+      const languageLabel = document.createElement("span");
+      languageLabel.className = "project-language";
+      languageLabel.textContent = repo.languageName;
+
+      const openLabel = document.createElement("span");
+      openLabel.className = "project-open";
+      openLabel.textContent = translations[language]["projects.open"];
+      const arrow = document.createElement("i");
+      arrow.className = "fa-solid fa-arrow-up-right-from-square";
+      openLabel.appendChild(arrow);
+
+      meta.append(languageLabel, openLabel);
+      body.append(type, title, description, meta);
+      card.append(preview, body);
+      container.appendChild(card);
+
+      card.style.transitionDelay = `${(index % 3) * 70}ms`;
+      requestAnimationFrame(() => card.classList.add("is-visible"));
     });
+  } catch (error) {
+    console.error("Erro ao carregar repositórios do GitHub:", error);
+    status.textContent = translations[language]["projects.error"];
+    container.innerHTML = `<div class="projects-empty">${translations[language]["projects.error"]} <a href="https://github.com/${username}?tab=repositories" target="_blank" rel="noopener">GitHub</a></div>`;
+  }
 }
 
-prevBtn.addEventListener('click', () => {
-    activeIndex = (activeIndex - 1 + cards.length) % cards.length;
-    updateCarousel();
-});
+loadGithubProjects();
 
-nextBtn.addEventListener('click', () => {
-    activeIndex = (activeIndex + 1) % cards.length;
-    updateCarousel();
-});
-
-let resizeTimeout;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(updateCarousel, 200);
-});
-
-function checkFade() {
-    const divs = document.querySelectorAll('div');
-
-    divs.forEach(div => {
-
-        if (
-            div.classList.contains('language') ||
-            div.closest('.language') ||
-            div.id === 'header' ||
-            div.closest('#header') ||
-            div.closest('.slider')||
-            div.closest('.gradiente-superior-esquerdo') ||
-            div.closest('.gradiente-inferior-direito') // ignore divs dentro do slider também
-        ) return;
-        const rect = div.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-
-        // Calcula o quanto da div está visível (entre 0 e 1)
-        const visibleTop = Math.max(0, rect.top);
-        const visibleBottom = Math.min(windowHeight, rect.bottom);
-        const visibleHeight = visibleBottom - visibleTop;
-        const totalHeight = rect.height;
-
-        let visibilityRatio = visibleHeight / totalHeight;
-
-        // Se estiver totalmente fora da tela, visibilidade é 0
-        if (rect.bottom <= 0 || rect.top >= windowHeight) {
-            visibilityRatio = 0;
-        }
-
-        // Garante que fique entre 0 e 1
-        visibilityRatio = Math.max(0, Math.min(1, visibilityRatio));
-
-        // Aplica a opacidade baseada na visibilidade
-        div.style.opacity = visibilityRatio;
-    });
-}
-
-let lastScrollTop = 0;
-const header = document.getElementById('header');
-
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-    const scrollPosition = window.scrollY;
-
-    // Quando o scroll passar de 50px, adiciona a classe 'scrolled'
-    if (scrollPosition > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-});
-
-
-document.getElementById('btn-github').addEventListener('click', () => {
-    window.open('https://github.com/guilherme-luiz-pinheiro', '_blank');
-});
-
-document.getElementById('btn-linkedin').addEventListener('click', () => {
-    window.open('https://www.linkedin.com/in/guilherme-luiz-pinheiro/', '_blank');
-});
-document.getElementById('btn-whatsapp').addEventListener('click', () => {
-    const mensagem = encodeURIComponent('Olá Guilherme. Gostaria de mais informações!');
-    const numero = '5511977315574';
-    const url = `https://wa.me/${numero}?text=${mensagem}`;
-    window.open(url, '_blank');
-});
-document.getElementById('btn-voltar').addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth' // rolagem suave
-    });
-});
-const btnVoltar = document.getElementById('btn-voltar');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY === 0) {
-        // Oculta suavemente ao voltar ao topo
-        btnVoltar.classList.remove('show');
-    } else {
-        // Mostra suavemente ao rolar para baixo
-        btnVoltar.classList.add('show');
-    }
-});
-
-btnVoltar.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-$(function () {
-    $(".br").click(function () {
-        // Menu
-        $(".menu li:nth-child(1) button").text("Home");
-        $(".menu li:nth-child(2) button").text("Sobre");
-        $(".menu li:nth-child(3) button").text("Projetos");
-        $(".menu li:nth-child(4) button").text("Serviços");
-        $(".menu li:nth-child(5) button").text("Contatos");
-        $(".menu li:nth-child(6) button").html('Baixar CV <svg width="20px"...</svg>');
-        $(".menu-texto").text("PT-BR");
-        $(".language-selected").text("pt-BR").removeClass("change-en change-es").addClass("change-br");
-
-        // Perfil
-        $(".textoPerfil h4:first").text("DESENVOLVEDOR FULLSTACK");
-        $(".textoPerfil h4.blue-fade").text("Crio soluções digitais completas:");
-        $(".textoPerfil h4:last").text("do design à programação");
-
-        // Seção "Minha jornada"
-        $("#sobre h1").html("&#123;Minha jornada&#125;");
-        $("#sobre p").html(`Sou desenvolvedor com experiência em desenvolvimento de aplicações web, desktop e
-                mobile. Tenho foco em soluções Full Stack, com domínio em tecnologias como <span class="azul">C#/.NET, JavaScript, HTML/CSS, bancos de dados relacionais</span>, consumo de APIs REST e versionamento com Git.
-                Já atuei em projetos de sustentação e evolução de sistemas, criação de funcionalidades do zero, testes e
-                documentação técnica. Busco constantemente aprimorar minhas habilidades técnicas e contribuir com
-                soluções eficientes, escaláveis e alinhadas às necessidades do negócio.`);
-
-        // Soft Skills
-        $(".softskills .box-branco h2").text("<Softskills>");
-        $(".softskill .container").eq(0).find("p").html("Comunicação<span style='color: #0055ff;'>&gt;</span><br><span class='extra-text'>Capacidade de expressar ideias de forma clara e eficaz, tanto verbalmente quanto por escrito.</span>");
-        $(".softskill .container").eq(1).find("p").html("Adaptabilidade<span class='azul'>&gt;</span><br><span class='extra-text'>Capacidade de se ajustar rapidamente a novas situações.</span>");
-        $(".softskill .container").eq(2).find("p").html("Organização<span class='azul'>&gt;</span><br><span class='extra-text'>Manter tarefas estruturadas e cumprir prazos com eficiência.</span>");
-        $(".softskill .container").eq(3).find("p").html("Resolução de problemas<span class='azul'>&gt;</span><br><span class='extra-text'>Habilidade de analisar situações e encontrar soluções práticas.</span>");
-        $(".softskill .container").eq(4).find("p").html("Trabalho em equipe<span class='azul'>&gt;</span><br><span class='extra-text'>Colaboração eficaz com colegas para alcançar objetivos comuns.</span>");
-
-        // Serviços
-        $(".box-azul h2").text("[Serviços]");
-        let servicos = [
-            {
-                titulo: "Sites Responsivos",
-                subtitulo: "Layouts adaptáveis",
-                descricao: "Desenvolvimento de sites responsivos que se adaptam a diferentes tamanhos de tela, garantindo boa experiência para todos os usuários."
-            },
-            {
-                titulo: "Sistemas Web",
-                subtitulo: "Solução online",
-                descricao: "Criação de sistemas web sob medida com funcionalidades customizadas, completas para controle, gestão e visualização eficiente de dados."
-            },
-            {
-                titulo: "APIs RESTful",
-                subtitulo: "Comunicação ágil",
-                descricao: "Desenvolvimento de APIs RESTful eficientes e seguras, permitindo a integração ágil entre sistemas, plataformas e tecnologias diversas."
-            },
-            {
-                titulo: "Dashboards",
-                subtitulo: "Painéis visuais",
-                descricao: "Criação de dashboards modernos e interativos com gráficos, tabelas e indicadores em tempo real, facilitando a análise detalhada de métricas."
-            },
-            {
-                titulo: "Landing Pages",
-                subtitulo: "Conversão alta",
-                descricao: "Criação de landing pages atrativas, rápidas e otimizadas para campanhas de marketing digital, coleta de leads ou lançamentos."
-            },
-            {
-                titulo: "Integrações",
-                subtitulo: "Conexões úteis",
-                descricao: "Integração de sistemas com APIs de redes sociais ou CRMs, para ampliação de funcionalidades e automatização inteligente de processos."
-            }
-        ];
-        $(".servico > div").each(function (index) {
-            $(this).find("h4").text(servicos[index].titulo);
-            $(this).find("p.azul").text(servicos[index].subtitulo);
-            $(this).find("p").last().text(servicos[index].descricao);
-        });
-        // Ferramentas
-        $("#ferramentas h2").html("Ferramentas e tecnologias<br>que domino:");
-
-        // Nomes das ferramentas
-        $(".ferramenta .react p").text("React");
-        $(".ferramenta .javascript p").text("JavaScript");
-        $(".ferramenta .css p").text("CSS");
-        $(".ferramenta .html p").text("HTML");
-        $(".ferramenta .java p").text("Java");
-        $(".ferramenta .python p").text("Python");
-        $(".ferramenta .sql p").text("SQL");
-        $(".ferramenta svg + p").text("C-Sharp");
-
-        // Projetos
-        $("#projetos h2").text("Projetos realizados");
-        $("#projetos h3").text("Veja na prática como aplico minhas habilidades em projetos reais.");
-
-        $(".card").each(function (i, el) {
-            const $card = $(el);
-            const h3 = $card.find("h3").text().trim();
-
-            if (h3 === "Buscgame 2.0" || h3 === "Buscgame 2.0") {
-                $card.find("h3").text("Buscgame 2.0");
-                $card.find("p").text("Em desenvolvimento. Versão aprimorada do Buscgame, site buscador e comparador dos melhores preços pra jogos de vídeo game.");
-            } else if (h3 === "Portfolio" || h3 === "Portafolio") {
-                $card.find("h3").text("Portfólio");
-                $card.find("p").text("Projeto desenvolvido integralmente, incluindo a criação do wireframe, mockup e a implementação do layout com HTML e CSS.");
-            } else if (h3.includes("Another Project") || h3.includes("Otro Proyecto")) {
-                $card.find("h3").text("Outro Projeto");
-                $card.find("p").text("Descrição breve do projeto.");
-            }
-        });
-        // Rodapé
-        $("footer h3").eq(0).text("Contato");
-        $("footer p").eq(0).text("Envie uma mensagem");
-        $("footer h3").eq(1).text("Mapa do site");
-        $("footer p").eq(1).text("Todas as páginas");
-        $("footer h3").eq(2).text("Contato");
-        $("button[type='submit']").text("Enviar");
-
-        $(".contatos ul li").eq(0).find("a").text("Home");
-        $(".contatos ul li").eq(1).find("a").text("Sobre");
-        $(".contatos ul li").eq(2).find("a").text("Projetos");
-        $(".contatos ul li").eq(3).find("a").text("Serviços");
-        $(".contatos ul li").eq(4).find("a").text("Contatos");
-
-        $("footer .copyright").text("© 2025 Guilherme Pinheiro — Todos os direitos reservados.");
-    });
-
-    // Exemplo: mesma lógica para .en e .es pode ser adicionada aqui
-});
-
-$(function () {
-    $(".en").click(function () {
-        // Menu
-        $(".menu li:nth-child(1) button").text("Home");
-        $(".menu li:nth-child(2) button").text("About");
-        $(".menu li:nth-child(3) button").text("Projects");
-        $(".menu li:nth-child(4) button").text("Services");
-        $(".menu li:nth-child(5) button").text("Contact");
-        $(".menu li:nth-child(6) button").html('Download CV <svg width="20px"...</svg>');
-        $(".menu-texto").text("EN-US");
-        $(".language-selected").text("en-US").removeClass("change-br change-es").addClass("change-en");
-
-        // Profile
-        $(".textoPerfil h4:first").text("FULLSTACK DEVELOPER");
-        $(".textoPerfil h4.blue-fade").text("I create complete digital solutions:");
-        $(".textoPerfil h4:last").text("from design to code");
-
-        // About Section
-        $("#sobre h1").html("&#123;My journey&#125;");
-        $("#sobre p").html(`I'm a developer with experience in building web, desktop, and mobile applications. I specialize in Full Stack solutions, mastering technologies such as <span class="azul">C#/.NET, JavaScript, HTML/CSS, relational databases</span>, REST API consumption, and Git version control.
-            I've worked on maintaining and evolving systems, creating features from scratch, testing, and writing technical documentation. I'm always improving my skills and delivering scalable, efficient solutions aligned with business needs.`);
-
-        // Soft Skills
-        $(".softskills .box-branco h2").text("<Softskills>");
-        $(".softskill .container").eq(0).find("p").html("Communication<span style='color: #0055ff;'>&gt;</span><br><span class='extra-text'>Ability to express ideas clearly and effectively, both verbally and in writing.</span>");
-        $(".softskill .container").eq(1).find("p").html("Adaptability<span class='azul'>&gt;</span><br><span class='extra-text'>Ability to quickly adjust to new situations.</span>");
-        $(".softskill .container").eq(2).find("p").html("Organization<span class='azul'>&gt;</span><br><span class='extra-text'>Keep tasks organized and meet deadlines efficiently.</span>");
-        $(".softskill .container").eq(3).find("p").html("Problem Solving<span class='azul'>&gt;</span><br><span class='extra-text'>Skill to analyze situations and find practical solutions.</span>");
-        $(".softskill .container").eq(4).find("p").html("Teamwork<span class='azul'>&gt;</span><br><span class='extra-text'>Effective collaboration with colleagues to achieve common goals.</span>");
-
-        // Services
-        $(".box-azul h2").text("[Services]");
-        let services = [
-            {
-                titulo: "Responsive Websites",
-                subtitulo: "Adaptive layouts",
-                descricao: "Development of responsive websites that adapt to different screen sizes, ensuring a good user experience."
-            },
-            {
-                titulo: "Web Systems",
-                subtitulo: "Online solution",
-                descricao: "Custom-built web systems with complete functionalities for data control, management, and visualization."
-            },
-            {
-                titulo: "RESTful APIs",
-                subtitulo: "Agile communication",
-                descricao: "Efficient and secure RESTful API development, enabling fast integration between systems and platforms."
-            },
-            {
-                titulo: "Dashboards",
-                subtitulo: "Visual panels",
-                descricao: "Modern and interactive dashboards with real-time charts, tables, and KPIs to support detailed metric analysis."
-            },
-            {
-                titulo: "Landing Pages",
-                subtitulo: "High conversion",
-                descricao: "Attractive, fast, and optimized landing pages for marketing campaigns, lead generation, or product launches."
-            },
-            {
-                titulo: "Integrations",
-                subtitulo: "Useful connections",
-                descricao: "System integration with APIs from social networks or CRMs to expand features and automate processes."
-            }
-        ];
-        $(".servico > div").each(function (index) {
-            $(this).find("h4").text(services[index].titulo);
-            $(this).find("p.azul").text(services[index].subtitulo);
-            $(this).find("p").last().text(services[index].descricao);
-        });
-        // Ferramentas e Projetos - Tradução para Inglês
-        // Ferramentas
-        $("#ferramentas h2").html("Tools and technologies<br>that I master:");
-
-        // Nomes das ferramentas
-        $(".ferramenta .react p").text("React");
-        $(".ferramenta .javascript p").text("JavaScript");
-        $(".ferramenta .css p").text("CSS");
-        $(".ferramenta .html p").text("HTML");
-        $(".ferramenta .java p").text("Java");
-        $(".ferramenta .python p").text("Python");
-        $(".ferramenta .sql p").text("SQL");
-        $(".ferramenta svg + p").text("C-Sharp");
-
-        // Projetos
-        $("#projetos h2").text("Projects");
-        $("#projetos h3").text("See how I apply my skills in real-world projects.");
-
-        $(".card").each(function (i, el) {
-            const $card = $(el);
-            const h3 = $card.find("h3").text().trim();
-
-            if (h3 === "Buscgame 2.0") {
-                $card.find("h3").text("Buscgame 2.0");
-                $card.find("p").text("In development. Improved version of Buscgame, a site that searches and compares the best prices for video games.");
-            } else if (h3 === "Portfólio") {
-                $card.find("h3").text("Portfolio");
-                $card.find("p").text("Fully developed project, including wireframe, mockup, and layout implementation using HTML and CSS.");
-            } else if (h3.includes("Outro Projeto")) {
-                $card.find("h3").text("Another Project");
-                $card.find("p").text("Brief project description.");
-            }
-        });
-
-        // Footer
-        $("footer h3").eq(0).text("Contact");
-        $("footer p").eq(0).text("Send a message");
-        $("footer h3").eq(1).text("Site map");
-        $("footer p").eq(1).text("All pages");
-        $("footer h3").eq(2).text("Contact");
-        $("button[type='submit']").text("Send");
-
-        $(".contatos ul li").eq(0).find("a").text("Home");
-        $(".contatos ul li").eq(1).find("a").text("About");
-        $(".contatos ul li").eq(2).find("a").text("Projects");
-        $(".contatos ul li").eq(3).find("a").text("Services");
-        $(".contatos ul li").eq(4).find("a").text("Contact");
-
-        $("footer .copyright").text("© 2025 Guilherme Pinheiro — All rights reserved.");
-    });
-});
-
-$(function () {
-    $(".es").click(function () {
-        // Menú
-        $(".menu li:nth-child(1) button").text("Inicio");
-        $(".menu li:nth-child(2) button").text("Sobre mí");
-        $(".menu li:nth-child(3) button").text("Proyectos");
-        $(".menu li:nth-child(4) button").text("Servicios");
-        $(".menu li:nth-child(5) button").text("Contacto");
-        $(".menu li:nth-child(6) button").html('Descargar CV <svg width="20px"...</svg>');
-        $(".menu-texto").text("ES");
-        $(".language-selected").text("es").removeClass("change-br change-en").addClass("change-es");
-
-        // Perfil
-        $(".textoPerfil h4:first").text("DESARROLLADOR FULLSTACK");
-        $(".textoPerfil h4.blue-fade").text("Creo soluciones digitales completas:");
-        $(".textoPerfil h4:last").text("del diseño a la programación");
-
-        // Sección "Sobre mí"
-        $("#sobre h1").html("&#123;Mi trayectoria&#125;");
-        $("#sobre p").html(`Soy desarrollador con experiencia en el desarrollo de aplicaciones web, de escritorio y móviles. Me enfoco en soluciones Full Stack, dominando tecnologías como <span class="azul">C#/.NET, JavaScript, HTML/CSS, bases de datos relacionales</span>, consumo de APIs REST y control de versiones con Git.
-            He trabajado en mantenimiento y evolución de sistemas, creación de nuevas funcionalidades, pruebas y documentación técnica. Siempre busco mejorar mis habilidades y contribuir con soluciones eficientes y escalables, alineadas a las necesidades del negocio.`);
-
-        // Habilidades blandas
-        $(".softskills .box-branco h2").text("<Habilidades>");
-        $(".softskill .container").eq(0).find("p").html("Comunicación<span style='color: #0055ff;'>&gt;</span><br><span class='extra-text'>Capacidad para expresar ideas claramente, tanto de forma oral como escrita.</span>");
-        $(".softskill .container").eq(1).find("p").html("Adaptabilidad<span class='azul'>&gt;</span><br><span class='extra-text'>Capacidad para ajustarse rápidamente a nuevas situaciones.</span>");
-        $(".softskill .container").eq(2).find("p").html("Organización<span class='azul'>&gt;</span><br><span class='extra-text'>Mantener las tareas estructuradas y cumplir con los plazos de forma eficiente.</span>");
-        $(".softskill .container").eq(3).find("p").html("Resolución de problemas<span class='azul'>&gt;</span><br><span class='extra-text'>Habilidad para analizar situaciones y encontrar soluciones prácticas.</span>");
-        $(".softskill .container").eq(4).find("p").html("Trabajo en equipo<span class='azul'>&gt;</span><br><span class='extra-text'>Colaboración efectiva con colegas para lograr objetivos comunes.</span>");
-
-        // Servicios
-        $(".box-azul h2").text("[Servicios]");
-        let servicios = [
-            {
-                titulo: "Sitios Responsivos",
-                subtitulo: "Diseños adaptativos",
-                descricao: "Desarrollo de sitios web responsivos que se adaptan a diferentes tamaños de pantalla, garantizando una buena experiencia al usuario."
-            },
-            {
-                titulo: "Sistemas Web",
-                subtitulo: "Solución en línea",
-                descricao: "Creación de sistemas web personalizados con funcionalidades completas para el control, gestión y visualización de datos."
-            },
-            {
-                titulo: "APIs RESTful",
-                subtitulo: "Comunicación ágil",
-                descricao: "Desarrollo de APIs RESTful eficientes y seguras, permitiendo integración ágil entre plataformas y sistemas diversos."
-            },
-            {
-                titulo: "Paneles",
-                subtitulo: "Visualización de datos",
-                descricao: "Creación de paneles interactivos con gráficos, tablas e indicadores en tiempo real para facilitar el análisis de métricas."
-            },
-            {
-                titulo: "Landing Pages",
-                subtitulo: "Alta conversión",
-                descricao: "Páginas atractivas y optimizadas para campañas de marketing digital, generación de leads o lanzamientos."
-            },
-            {
-                titulo: "Integraciones",
-                subtitulo: "Conexiones útiles",
-                descricao: "Integración de sistemas con APIs de redes sociales o CRMs para ampliar funcionalidades y automatizar procesos."
-            }
-        ];
-        $(".servico > div").each(function (index) {
-            $(this).find("h4").text(servicios[index].titulo);
-            $(this).find("p.azul").text(servicios[index].subtitulo);
-            $(this).find("p").last().text(servicios[index].descricao);
-        });
-        // Ferramentas e Projetos - Tradução para Espanhol
-        // Ferramentas
-        $("#ferramentas h2").html("Herramientas y tecnologías<br>que domino:");
-
-        // Nomes das ferramentas
-        $(".ferramenta .react p").text("React");
-        $(".ferramenta .javascript p").text("JavaScript");
-        $(".ferramenta .css p").text("CSS");
-        $(".ferramenta .html p").text("HTML");
-        $(".ferramenta .java p").text("Java");
-        $(".ferramenta .python p").text("Python");
-        $(".ferramenta .sql p").text("SQL");
-        $(".ferramenta svg + p").text("C-Sharp");
-
-        // Projetos
-        $("#projetos h2").text("Proyectos");
-        $("#projetos h3").text("Mira cómo aplico mis habilidades en proyectos reales.");
-
-        $(".card").each(function (i, el) {
-            const $card = $(el);
-            const h3 = $card.find("h3").text().trim();
-
-            if (h3 === "Buscgame 2.0") {
-                $card.find("h3").text("Buscgame 2.0");
-                $card.find("p").text("En desarrollo. Versión mejorada de Buscgame, un sitio que busca y compara los mejores precios de videojuegos.");
-            } else if (h3 === "Portfólio") {
-                $card.find("h3").text("Portafolio");
-                $card.find("p").text("Proyecto desarrollado completamente, incluyendo wireframe, mockup e implementación del diseño con HTML y CSS.");
-            } else if (h3.includes("Outro Projeto")) {
-                $card.find("h3").text("Otro Proyecto");
-                $card.find("p").text("Descripción breve del proyecto.");
-            }
-        });
-
-        // Pie de página
-        $("footer h3").eq(0).text("Contacto");
-        $("footer p").eq(0).text("Envíame un mensaje");
-        $("footer h3").eq(1).text("Mapa del sitio");
-        $("footer p").eq(1).text("Todas las páginas");
-        $("footer h3").eq(2).text("Contacto");
-        $("button[type='submit']").text("Enviar"); // ou "Enviar mensaje", se preferir mais claro
-
-        $(".contatos ul li").eq(0).find("a").text("Inicio");
-        $(".contatos ul li").eq(1).find("a").text("Sobre mí");
-        $(".contatos ul li").eq(2).find("a").text("Proyectos");
-        $(".contatos ul li").eq(3).find("a").text("Servicios");
-        $(".contatos ul li").eq(4).find("a").text("Contacto");
-
-        $("footer .copyright").text("© 2025 Guilherme Pinheiro — Todos los derechos reservados.");
-    });
-});
-
-window.addEventListener('scroll', checkFade);
-window.addEventListener('load', checkFade);
-window.addEventListener('resize', checkFade);
-// Inicializa
-updateCarousel();
+$("#year").textContent = new Date().getFullYear();
