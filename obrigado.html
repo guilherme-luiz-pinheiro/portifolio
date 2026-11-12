@@ -1,78 +1,122 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="pt-BR" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obrigado!</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            height: 100vh;
-            background: linear-gradient(135deg, #011140, #0442bf);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-        }
-
-        .container {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            max-width: 400px;
-        }
-
-        .container h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .container p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
-
-        .icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            padding: 12px 25px;
-            background-color: #fff;
-            color: #011140;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-        }
-
-        .btn:hover {
-            background-color: #e0e0e0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d1b">
+  <meta name="description" content="Mensagem enviada com sucesso.">
+  <title>Obrigado | Guilherme Pinheiro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    (() => {
+      try {
+        const theme = localStorage.getItem('portfolio-theme') || 'dark';
+        const savedLanguage = localStorage.getItem('portfolio-language');
+        const browserLanguage = (navigator.languages?.[0] || navigator.language || 'pt-BR').slice(0, 2).toLowerCase();
+        const language = savedLanguage || (['en', 'es'].includes(browserLanguage) ? browserLanguage : 'pt');
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.lang = language === 'pt' ? 'pt-BR' : language;
+      } catch (_) {}
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #090b10;
+      --bg-soft: #0e1118;
+      --surface: rgba(255,255,255,.045);
+      --surface-hover: rgba(255,255,255,.075);
+      --text: #f5f6f8;
+      --muted: #9ba3b2;
+      --muted-strong: #c5cad3;
+      --border: rgba(255,255,255,.105);
+      --border-hover: rgba(255,255,255,.23);
+      --shadow: 0 24px 80px rgba(0,0,0,.32);
+    }
+    html[data-theme="light"] {
+      color-scheme: light;
+      --bg: #f5f6f8;
+      --bg-soft: #eceff3;
+      --surface: rgba(255,255,255,.78);
+      --surface-hover: #fff;
+      --text: #171a21;
+      --muted: #626b79;
+      --muted-strong: #394150;
+      --border: rgba(22,31,46,.10);
+      --border-hover: rgba(22,31,46,.22);
+      --shadow: 0 24px 70px rgba(30,40,58,.10);
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; }
+    body {
+      min-height: 100vh; margin: 0; padding: 28px;
+      display: grid; place-items: center; overflow: hidden;
+      background: var(--bg); color: var(--text);
+      font-family: "DM Sans", sans-serif; line-height: 1.65;
+      transition: background-color .35s ease, color .35s ease;
+    }
+    .ambient { position: fixed; inset: 0; overflow: hidden; pointer-events: none; }
+    .ambient::before, .ambient::after {
+      content: ""; position: absolute; width: min(58vw, 680px); aspect-ratio: 1;
+      border-radius: 50%; filter: blur(90px); opacity: .16;
+      background: radial-gradient(circle, #9aa9c2 0%, transparent 68%);
+    }
+    .ambient::before { top: -34%; left: -18%; }
+    .ambient::after { right: -20%; bottom: -42%; opacity: .12; }
+    html[data-theme="light"] .ambient::before,
+    html[data-theme="light"] .ambient::after { opacity: .22; }
+    main {
+      position: relative; width: min(100%, 470px); padding: clamp(34px, 6vw, 54px);
+      text-align: center; border: 1px solid var(--border); border-radius: 28px;
+      background: var(--surface); box-shadow: var(--shadow);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      animation: appear .7s cubic-bezier(.2,.7,.2,1) both;
+    }
+    .success-icon {
+      width: 66px; height: 66px; margin: 0 auto 25px; display: grid; place-items: center;
+      border: 1px solid var(--border); border-radius: 22px;
+      background: var(--surface-hover); color: var(--text); font-size: 27px;
+    }
+    .eyebrow { margin: 0 0 10px; color: var(--muted); font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { margin: 0; font: 800 clamp(2rem, 7vw, 2.8rem)/1.08 "Manrope", sans-serif; letter-spacing: -.065em; }
+    .message { margin: 17px 0 30px; color: var(--muted-strong); font-size: 1rem; }
+    .button {
+      min-height: 49px; display: inline-flex; align-items: center; justify-content: center;
+      gap: 10px; padding: 0 22px; border: 1px solid transparent; border-radius: 999px;
+      background: var(--text); color: var(--bg); font-size: .84rem; font-weight: 700;
+      text-decoration: none; transition: transform .22s ease, opacity .22s ease, box-shadow .22s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    }
+    .button:hover { transform: translateY(-2px); opacity: .9; }
+    .button:focus-visible { outline: 2px solid var(--muted); outline-offset: 4px; }
+    @keyframes appear { from { opacity: 0; transform: translateY(18px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+  </style>
 </head>
-
 <body>
-    <div class="container">
-        <div class="icon">🎉</div>
-        <h1>Obrigado!</h1>
-        <p>Recebida a mensagem com sucesso.<br>Entrarei em contato em breve.</p>
-        <a href="/" class="btn">Voltar para a página inicial</a>
-    </div>
+  <div class="ambient" aria-hidden="true"></div>
+  <main>
+    <div class="success-icon" aria-hidden="true">✓</div>
+    <p class="eyebrow" data-i18n="eyebrow">Mensagem enviada</p>
+    <h1 data-i18n="title">Obrigado!</h1>
+    <p class="message" data-i18n="message">Recebi sua mensagem com sucesso.<br>Entrarei em contato em breve.</p>
+    <a class="button" href="index.html" data-i18n="button">Voltar para a página inicial <span aria-hidden="true">→</span></a>
+  </main>
+  <script>
+    const language = document.documentElement.lang;
+    const translations = {
+      pt: { eyebrow: 'Mensagem enviada', title: 'Obrigado!', message: 'Recebi sua mensagem com sucesso.<br>Entrarei em contato em breve.', button: 'Voltar para a página inicial' },
+      en: { eyebrow: 'Message sent', title: 'Thank you!', message: 'Your message was sent successfully.<br>I will get back to you soon.', button: 'Back to home page' },
+      es: { eyebrow: 'Mensaje enviado', title: '¡Gracias!', message: 'He recibido tu mensaje correctamente.<br>Me pondré en contacto pronto.', button: 'Volver a la página de inicio' }
+    };
+    const copy = translations[language] || translations.pt;
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+      const key = element.dataset.i18n;
+      if (copy[key]) element.innerHTML = copy[key];
+    });
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', document.documentElement.dataset.theme === 'light' ? '#f5f6f8' : '#090b10');
+  </script>
 </body>
-
 </html>
